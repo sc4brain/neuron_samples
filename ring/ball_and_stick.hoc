@@ -1,0 +1,59 @@
+begintemplate B_BallStick
+
+// define public val and func
+public init, connect2target
+public soma, dend
+public synlist
+
+// use external function
+external lambda_f
+
+create soma, dend
+
+objref synlist
+
+// constructor
+proc init(){ local x, y, z localobj syn
+    // initialize args
+    x=$1 y=$2 z=$3
+    
+    // set position 
+    connect dend(0), soma(1)
+    soma { pt3dclear() pt3dadd(0+x, 0+y, 0+z, 12) pt3dadd(15+x, 0+y, 0+z, 12) }
+    dend { pt3dclear() pt3dadd(15+x, 0+y, 0+z, 1) pt3dadd(175+x, 0+y, 0+z, 1) }
+        
+    // set geom ( L and diam are automaticaly set by pt3d func )
+    forall { nseg = int((L/(0.1*lambda_f(100))+0.9)/2)*2 + 1 }
+
+    // set biophys
+    forall { Ra = 100 cm = 1 }
+    soma {
+		insert hh
+		gnabar_hh = 0.12
+		gkbar_hh = 0.036
+		gl_hh = 0.0003
+		el_hh = -54.3
+    }
+    dend {
+		insert pas
+		g_pas = 0.001
+		e_pas = -65
+    }
+    
+    // set synapse
+    synlist = new List()
+    dend { syn = new ExpSyn(0.8) }
+    syn.tau = 2
+    synlist.append(syn)
+}
+
+obfunc connect2target() { localobj nc
+    // $o1 target point process
+    soma nc = new NetCon(&v(1), $o1)
+    nc.threshold = 10
+    //if(numarg() == 2){ $o2 = nc }
+    return nc
+}
+
+endtemplate B_BallStick
+
