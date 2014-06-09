@@ -1,0 +1,289 @@
+proc makePreSynapse() {\
+    local gid, pre_cell, pre_section \
+    localobj cell, nc, nil
+    
+    gid = $1
+    pre_cell = $2
+    pre_section = $3
+    
+    if(_pc.gid_exists(pre_cell)){
+		printf("\t[RANK:%d] PRE : gid=%d cell=%d(%d)\n", _pc.id, gid, pre_cell, pre_section)
+		cell = _pc.gid2obj(pre_cell)
+		//printf("cell.SectionNum=%d\n", cell2.SectionNum)
+		_pc.set_gid2node(gid, _pc.id)
+		nc = cell.makeNetCon(pre_section, nil, 0, 0, 0.2)
+		_pc.cell(gid, nc)
+		nc.weight = 0.2
+		nc.delay = 0.1
+		_pc.cell(gid, nc)
+		_nc_list.append(nc)
+    }
+}
+
+proc makePostSynapse() {\
+    local gid, post_cell, post_section, weight \
+    localobj cell, nc, syn, nil 
+    
+    gid = $1
+    post_cell = $2
+    post_section = $3
+	weight = $4
+	
+    if(_pc.gid_exists(post_cell)){
+		printf("\t[RANK:%d] POST : gid=%d cell=%d (%d)\n", _pc.id, gid, post_cell, post_section)
+		cell = _pc.gid2cell(post_cell)
+		syn = cell.makeSyn(post_section, 1, 5, 0)
+		nc = _pc.gid_connect(gid, syn)
+		nc.delay = 0.1
+		nc.weight = weight
+		//nc.threshold = 8
+		_nc_list.append(nc)
+		_syn_list.append(syn)
+    }
+	
+}
+
+
+
+proc splitCell(){ local split_rank, sid_base, sec_id, ex_rank, local_secnum, x, sid, local_tmp localobj spl_fp
+	//splitCell(split_rank, sid, split_filename)
+	strdef split_filename
+	strdef str_buf
+	
+	split_rank = $1
+	sid_base = $2
+	split_filename = $s3
+	local_secnum = 0
+	
+	//listSection(0)
+	
+	spl_fp = new File()
+	if(spl_fp.ropen(split_filename) != 1){ printf("Error : spl file not found.\n") quit() }
+    while( spl_fp.scanstr(str_buf) != -1 ){
+		if(strcmp("EXISTS", str_buf) == 0){
+			spl_fp.gets(str_buf)
+			sscanf(str_buf, "%d, %d\n", &sec_id, &ex_rank)
+			sec_id -= 1
+			if(sec_id<0){
+				continue
+			}else if(split_rank == ex_rank){
+				local_secnum += 1
+			}else if(section_exists("Dend", sec_id, CellSwc[0])){
+				// delete sections 
+				//printf("[%d] delte section %d\n", _pc.id, sec_id)
+				CellSwc[0].deleteSection(sec_id, _pc.id)
+			}else{
+			}
+		}else if(strcmp("MSPLIT", str_buf) == 0){
+			spl_fp.gets(str_buf)
+			sscanf(str_buf, "%d %f %d CellSwc[0].Dend[%d] CellSwc[0].Dend[%d]\n", &ex_rank, &x, &sid, &sec_id, &local_tmp)
+			if(split_rank == ex_rank){
+				CellSwc[0].multisplit(sec_id, x, sid+sid_base, _pc)
+			}
+		}else if(strcmp("/*", str_buf) == 0){
+			while(spl_fp.scanstr(str_buf) != -1){
+				if(strcmp("*/", str_buf) == 0){
+					break
+				}
+			}		
+		}else{
+			//printf("Error : wrong spl file format.\n")
+		}
+	}
+	printf("\t[RANK:%d] has %d section\n", _pc.id, local_secnum)
+	spl_fp.close()
+	
+	//listSection(1)
+	
+}
+
+func loadNrc(){local cellproc, gid, nc_pos, xshift, yshift, zshift, section_id, stim_num, stim_interval, stim_start, pre_cell, pre_section, post_cell, post_section, weight, sid, rank, split_rank localobj nrc_fp, cell, cell2, nc, stim, synstim, syn, sec, nil
+    // $s1 : filename
+	strdef nrc_filename
+    strdef str_buf
+    strdef swc_filename
+	strdef split_filename
+	nrc_filename = $s1
+    _num_cells = 0
+    _num_localcells = 0
+    _cell_list = new List()
+    _nc_list = new List()
+    _stim_list = new List()
+    _ncstim_list = new List()
+    _syn_list = new List()
+    _tspike_record = new Vector()
+    _idspike_record = new Vector()
+	
+    nrc_fp = new File()
+    if(nrc_fp.ropen(nrc_filename) != 1){ printf("ERROR : NRC File not found. (%s)\n", nrc_filename) return(-1) }
+    
+    printf("\t[Neural Circuit File : %s]\n", $s1)
+    
+    while( nrc_fp.scanstr(str_buf) != -1 ){
+		//_pc.barrier()
+		if(strcmp("CELLNUM", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			printf("\t * CELLNUM : %s", str_buf)
+			sscanf(str_buf, "%d\n", &_num_cells)
+		}else if(strcmp("CELL", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %s %d %f %f %f\n", &cellproc, &gid, swc_filename, &nc_pos, &xshift, &yshift, &zshift)
+			if(_pc.id == (cellproc % _pc.nhost)){
+				cell = new CellSwc(swc_filename, xshift, yshift, zshift)
+				if(cell.loadOk != 1){ printf("ERROR : cannot read %s\n") continue }
+				_num_localcells += 1
+				
+				nc = cell.makeNetCon(nc_pos, nil, 0, 0, 1.0)
+				_pc.set_gid2node(gid, _pc.id)
+				_pc.cell(gid, nc)
+				nc.record(_tspike_record, _idspike_record, nc.srcgid)
+				
+				printf("\t[RANK:%d] CELL(%d) : %s", _pc.id, cell.SectionNum, str_buf)
+				_cell_list.append(cell)
+				_nc_list.append(nc)
+			}
+		}else if(strcmp("CELL_S", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %s %f %f %f\n", &cellproc, &gid, swc_filename, &xshift, &yshift, &zshift)
+			if(_pc.id == cellproc){
+				cell = new CellSwc(swc_filename, xshift, yshift, zshift)
+				if(cell.loadOk != 1){ printf("ERROR : cannot read %s\n") continue }
+				_num_localcells += 1
+				
+				printf("\t[RANK:%d] CELL_S (%d) : %s", _pc.id, cell.SectionNum, str_buf)
+				_cell_list.append(cell)
+			}
+		}else if(strcmp("MAKENC", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d\n", &gid, &nc_pos)
+			if(gid == _pc.id){
+				printf("\t[RANK:%d] MAKENC : %d\n", _pc.id, nc_pos)
+				nc = cell.makeNetCon(nc_pos, nil, 0, 0, 1.0)
+				_pc.set_gid2node(gid, _pc.id)
+				_pc.cell(gid, nc)
+				nc.record(_tspike_record, _idspike_record, nc.srcgid)
+				_nc_list.append(nc)
+			}
+		}else if(strcmp("V_DATA", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%s\n",_vdata_pos)
+			printf("\t * V_DATA : %s", str_buf)
+		}else if(strcmp("DT", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%f\n", &dt)
+			printf("\t * DT : %f", dt)
+		}else if (strcmp("SYNAPSE", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %d %d %d %f\n", &gid, &pre_cell, &pre_section, &post_cell, &post_section, &weight)
+			// pre
+			if(_pc.gid_exists(pre_cell)){
+				printf("\t[RANK:%d] PRE : %d %d\n", _pc.id, pre_cell, pre_section)
+				cell2 = _pc.gid2obj(pre_cell)
+				//printf("cell.SectionNum=%d\n", cell2.SectionNum)
+				_pc.set_gid2node(gid, _pc.id)
+				nc = cell2.makeNetCon(pre_section, nil, 0, 0, 0.1)
+				_pc.cell(gid, nc)
+				_nc_list.append(nc)
+			}
+			_pc.barrier()
+			// post
+			if(_pc.gid_exists(post_cell)){
+				printf("\t[RANK:%d] POST : %d %d\n", _pc.id, post_cell, post_section)
+				cell = _pc.gid2cell(post_cell)
+				syn = cell.makeSyn(post_section, 2, 5, 0)
+				nc = _pc.gid_connect(gid, syn)
+				nc.delay = 0.3
+				nc.weight = weight
+				nc.threshold = 8
+				_nc_list.append(nc)
+				_syn_list.append(syn)
+			}
+		}else if(strcmp("PRESYN", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %d\n", &gid, &pre_cell, &pre_section)
+			makePreSynapse(gid, pre_cell, pre_section)
+		}else if(strcmp("POSTSYN", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %d %f\n", &gid, &post_cell, &post_section, &weight)
+			makePostSynapse(gid, post_cell, post_section, weight)
+		}else if(strcmp("STIM", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %d %d %f\n", &gid, &section_id, &stim_num, &stim_interval, &stim_start)
+			if(_pc.gid_exists(gid)){
+				printf("\t[RANK:%d] STIM : %s", _pc.id, str_buf)
+				stim = new NetStim()
+				stim.number = stim_num
+				stim.interval= stim_interval
+				stim.start = stim_start
+				
+				cell = _pc.gid2cell(gid)
+				synstim = cell.makeSyn(section_id, 2, 5, 0)
+				nc = new NetCon(stim, synstim, 0.1, 0, 0.1)
+				nc.delay = 0.4
+				nc.weight = 0.7
+				_stim_list.append(stim)
+				_syn_list.append(synstim)
+				_nc_list.append(nc)
+			}
+		}else if(strcmp("CONNECT", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %d %d %d\n", &sid, &pre_cell, &pre_section, &post_cell, &post_section)
+			if(_pc.gid_exists(pre_cell)){
+				printf("\t[RANK:%d] CONNECT(%d) : %d(%d) %d(%d)\n", _pc.id, sid, pre_cell, pre_section, post_cell, post_section)
+				//connect CellSwc[1].Dend[post_section](0), CellSwc[0].Dend[pre_section](1)
+				//sec = CellSwc[1].Dend[1]
+				//sec { psection() }
+				CellSwc[0].Dend[pre_section] {
+					connect CellSwc[1].Dend[post_section](0), 1
+					//psection()
+				}
+			}
+		}else if(strcmp("MCONNECT", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %d %d %d\n", &sid, &pre_cell, &pre_section, &post_cell, &post_section)
+			if(_pc.gid_exists(pre_cell)){
+				printf("\t[RANK:%d] MCONNECT(%d) : [%d(%d)] %d(%d)\n", _pc.id, sid, pre_cell, pre_section, post_cell, post_section)
+				CellSwc[0].Dend[pre_section] {
+					//disconnect()
+					psection()
+					_pc.multisplit(1, sid)
+				}
+				CellSwc[0].Dend[1] {
+					//connect CellSwc[0].Dend[pre_section](0), 1
+				}
+			}
+			_pc.barrier()
+			if(_pc.gid_exists(post_cell)){
+				printf("\t[RANK:%d] MCONNECT(%d) : %d(%d) [%d(%d)]\n", _pc.id, sid, pre_cell, pre_section, post_cell, post_section)
+				CellSwc[0].Dend[post_section] {
+					//psection()
+					_pc.multisplit(0, sid)
+				}
+			}
+		}else if(strcmp("SPLIT", str_buf) == 0){
+			// SPLIT cell_gid, split_rank, sid_base, split_filename
+			nrc_fp.gets(str_buf)
+			sscanf(str_buf, "%d %d %d %s\n", &gid, &split_rank, &sid, split_filename)
+			//if(_pc.gid_exists(gid)){
+			// one cell = one rank
+			if(_pc.id == gid){
+				printf("\t[RANK:%d] SPLIT (part=%d, base=%d) : %s\n", _pc.id, split_rank, sid, split_filename)
+				splitCell(split_rank, sid, split_filename)
+			}
+			
+		}else if(strcmp("BARRIER", str_buf) == 0){
+			nrc_fp.gets(str_buf)
+			_pc.barrier()
+		}else if(strcmp("/*", str_buf) == 0){
+			while(nrc_fp.scanstr(str_buf) != -1){
+				if(strcmp("*/", str_buf) == 0){
+					break
+				}
+			}
+		}else{
+			nrc_fp.gets(str_buf)
+			//printf("COMMENT : %s", str_buf)
+		}
+	}
+	return(0)
+}
