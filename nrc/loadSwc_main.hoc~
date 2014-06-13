@@ -7,11 +7,8 @@
 {load_file("nrngui.hoc")}
 {load_file("loadSwc.hoc")}
 
-objref cell
-
 proc main() {
-     cell = new CellSwc("../swc/0661.swc", 0, 0, 0)
-     printf("Load OK\n")
+     printf("OK")
 
 }
 
