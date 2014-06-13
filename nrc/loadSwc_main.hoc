@@ -1,0 +1,21 @@
+/********************************************************/
+/*    sample code of How to use loadSwc.hoc             */
+/*                                                      */
+/*                                   by nebula          */
+/********************************************************/
+
+{load_file("nrngui.hoc")}
+{load_file("loadSwc.hoc")}
+
+objref cell
+
+proc main() {
+     cell = new CellSwc("../swc2/0661.swc", 0, 0, 0)
+     printf("Load OK\n")
+
+}
+
+
+main()
+
+
