@@ -1,0 +1,35 @@
+load_file("nrngui.hoc") 
+
+create cell
+objref stim
+
+cell{
+	insert hh
+	nseg = 1
+	diam = 20.0
+	L = 20.0
+
+	stim = new IClamp(0.5)
+	stim.del = 100
+	stim.dur = 100
+	stim.amp = 0.00
+}
+
+objref vecv
+objref outfile
+
+vecv = new Vector()
+vecv.record(&cell.v(0.5))
+
+outfile = new File()
+outfile.wopen("iclamp_000.txt")
+
+printf("Initialize finished !\n")
+finitialize()
+tstop = 300
+run()
+
+printf("Simulation finished !\n")
+vecv.printf(outfile, "%8.4f\n")
+
+quit()
