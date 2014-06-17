@@ -317,7 +317,7 @@ proc biophys() {
 
 external lambda_f
 proc geom_nseg() {
-	forall { nseg = int((L / (0.1 * lambda_f(100)) + .9) / 2) * 2 + 1 }
+	//forall { nseg = int((L / (0.1 * lambda_f(100)) + .9) / 2) * 2 + 1 }
 	//forall { nseg = 1000 }
 }
 
