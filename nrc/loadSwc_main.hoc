@@ -13,7 +13,7 @@ objref stim
 objref synstim
 objref nc
 
-cell = new CellSwc("../swc/0661.swc", 0, 0, 0)
+cell = new CellSwc("../swc/0969.swc", 0, 0, 0)
 printf("Load OK\n")
 
 
