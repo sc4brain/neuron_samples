@@ -1,6 +1,7 @@
 #!/bin/sh
 
-NRN=~/github/neuron_kplus/exec_icc/x86_64/bin/nrniv
+#NRN=~/github/neuron_kplus/exec_icc/x86_64/bin/nrniv
+NRN=./x86_64/special
 DIV=2
 TMP=tmp.txt
 #FILENAME=../hoc/spl/Swc_BN_1056_div1.spl
