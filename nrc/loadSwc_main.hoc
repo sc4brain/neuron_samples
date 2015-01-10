@@ -42,5 +42,7 @@ stim.amp = 0.5
 tstop = 200
 dt = 0.05
 
+run()
+
 
 
