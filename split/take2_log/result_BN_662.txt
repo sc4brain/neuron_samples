@@ -1,0 +1,44 @@
+###############################################################
+#nhost     = 1
+#split     = 0
+#
+#setuptime = 0.75
+#runtime   = 11.49
+#    0 time    11.4791          0          0 86682
+#
+###############################################################
+#nhost     = 2
+#split     = 2
+#c = 86673   maxfactor = 0.15   cm = 6500.475 
+#total complexity is 87378.2
+#1 cells
+#22 pieces
+#maximum complexity is 43639 for host 1
+       #load imbalance is -0.1%
+        #maximum of 12 pieces on host 0
+   #at least one cell is broken into 22 pieces (bilist[0], gid 0)
+ #at least one cell has 11 sids (bilist[0], gid 0)
+###############################################################
+#nhost     = 3
+#split     = 2
+#c = 86673   maxfactor = 0.15   cm = 4333.65 
+#total complexity is 87493.6
+#1 cells
+#39 pieces
+#maximum complexity is 29101.4 for host 1
+#load imbalance is -0.2%
+#maximum of 15 pieces on host 2
+#at least one cell is broken into 39 pieces (bilist[0], gid 0)
+#at least one cell has 21 sids (bilist[0], gid 0)
+###############################################################
+#nhost     = 4
+#split     = 2
+#c = 86673   maxfactor = 0.15   cm = 3250.2375 
+#total complexity is 87635.8
+#1 cells
+#48 pieces
+#maximum complexity is 22009 for host 3
+#load imbalance is 0.5%
+#maximum of 15 pieces on host 0
+#at least one cell is broken into 48 pieces (bilist[0], gid 0)
+#at least one cell has 25 sids (bilist[0], gid 0)

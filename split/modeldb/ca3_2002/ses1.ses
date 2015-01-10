@@ -1,0 +1,64 @@
+load_file("nrngui.hoc")
+objectvar save_window_, rvp_
+objectvar scene_vector_[5]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,140,-80,40)
+scene_vector_[2] = save_window_
+{save_window_.view(0, -80, 140, 120, 454, 552, 300.24, 266.34)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.addexpr("v(.5)", 6, 1, 0.8, 0.9, 2)
+save_window_.label(0.846377, 0.448598, "Time [ms]", 2, 1, 0, 0, 1)
+save_window_.label(0.866689, 0.860829, " at soma", 2, 1, 0, 0, 6)
+save_window_.label(0.0492754, 0.949266, "v [mV]", 2, 1, 0, 0, 1)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(-300,900,-80,40)
+scene_vector_[3] = save_window_
+{save_window_.view(-300, -80, 1200, 120, 3, 114, 569.52, 215.22)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+dend8[10] rvp_.begin(1)
+dend3[83] rvp_.end(1)
+rvp_.origin(23.054)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+dend4[16] rvp_.begin(1)
+dend3[69] rvp_.end(1)
+rvp_.origin(23.054)
+save_window_.addobject(rvp_, 3, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+dend4[16] rvp_.begin(1)
+dend3[56] rvp_.end(1)
+rvp_.origin(23.054)
+save_window_.addobject(rvp_, 4, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+dend4[4] rvp_.begin(1)
+dend3[13] rvp_.end(1)
+rvp_.origin(23.054)
+save_window_.addobject(rvp_, 5, 1, 0.8, 0.9)
+save_window_.label(0.755427, 0.510055, "Distance from soma [um]", 2, 1, 0, 0, 1)
+save_window_.label(0.266281, 0.954296, "v [mV]", 2, 1, 0, 0, 1)
+save_window_.label(0.387844, 0.946069, "Different colors are different paths from basal to apical dendrites", 2, 1, 0, 0, 1)
+}
+{
+save_window_ = new PlotShape(0)
+save_window_.size(-390.806,500.806,-691.89,231.892)
+save_window_.variable("v")
+scene_vector_[4] = save_window_
+{save_window_.view(-390.806, -691.89, 891.612, 923.781, 7, 553, 257.76, 267.06)}
+fast_flush_list.append(save_window_)
+save_window_.save_name("fast_flush_list.")
+}
+objectvar scene_vector_[1]
+{doNotify()}

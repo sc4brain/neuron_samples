@@ -1,0 +1,61 @@
+numprocs=1
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+###############################################################
+#nhost     = 1
+#split     = 2
+cell created 1006 
+#c = 86845   maxfactor = 0.15   cm = 13026.75 
+#total complexity is 87535
+#1 cells
+#11 pieces
+#maximum complexity is 87383.2 for host 0
+#load imbalance is -0.2%
+#maximum of 11 pieces on host 0
+#at least one cell is broken into 11 pieces (bilist[0], gid 0)
+#at least one cell has 6 sids (bilist[0], gid 0)
+	0 
+	1 
+	0 
+0 Cell_BN_1006[0].dend[0]   1445 
+1 Cell_BN_1006[0].dend[926]   1409 
+2 Cell_BN_1006[0].dend[932]   1561 
+3 Cell_BN_1006[0].dend[934]   12 
+4 Cell_BN_1006[0].dend[1931]   1265 
+5 Cell_BN_1006[0].dend[1936]   695 
+6 Cell_BN_1006[0].dend[2609]   1047 
+7 Cell_BN_1006[0].dend[2611]   604 
+8 Cell_BN_1006[0].dend[7973]   1073 
+9 Cell_BN_1006[0].dend[7974]   137 
+10 Cell_BN_1006[0].dend[8151]   1609 
+	0 
+	Vector[694938] 
+	0 
+42302	44553	
+	2 
+[  0]	5 
+balance 1.0259168 
+	0 
+#
+#setuptime = 4.68
+#runtime   = 11.38
+#    0 time    11.3609 0.00974011 0.00451255 86855
+#

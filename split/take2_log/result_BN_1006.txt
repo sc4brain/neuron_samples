@@ -1,0 +1,65 @@
+###############################################################
+#nhost     = 1
+#split     = 0
+#
+#setuptime = 0.7
+#runtime   = 11.05
+#    0 time    11.0507          0          0 86845
+#
+###############################################################
+#nhost     = 2
+#split     = 2
+#c = 86845   maxfactor = 0.15   cm = 6513.375 
+#total complexity is 87568.6
+#1 cells
+#23 pieces
+#maximum complexity is 43773 for host 0
+#load imbalance is -0.0%
+#maximum of 12 pieces on host 1
+#at least one cell is broken into 23 pieces (bilist[0], gid 0)
+#at least one cell has 12 sids (bilist[0], gid 0)
+#
+#setuptime = 2.8
+#runtime   = 5.69
+#    0 time    5.65895  0.0332465 0.00703073 43221
+#
+#    1 time    5.57757   0.114654 0.00323415 43646
+###############################################################
+#nhost     = 3
+#split     = 2
+#c = 86845   maxfactor = 0.15   cm = 4342.25 
+#total complexity is 87685.4
+#1 cells
+#36 pieces
+#maximum complexity is 29200.2 for host 1
+#load imbalance is -0.1%
+#maximum of 13 pieces on host 2
+#at least one cell is broken into 36 pieces (bilist[0], gid 0)
+#at least one cell has 19 sids (bilist[0], gid 0)
+#
+#setuptime = 2.23
+#runtime   = 4.03
+#    0 time    3.92174   0.107795 0.00998473 29019
+#    1 time    3.94355  0.0860133 0.00429177 29134
+#
+#    2 time    3.88809   0.141469 0.00373173 28727
+###############################################################
+#nhost     = 4
+#split     = 2
+#c = 86845   maxfactor = 0.15   cm = 3256.6875 
+#total complexity is 87763.6
+#1 cells
+#53 pieces
+#maximum complexity is 21924.6 for host 3
+#load imbalance is -0.1%
+#maximum of 14 pieces on host 1
+#at least one cell is broken into 53 pieces (bilist[0], gid 0)
+#at least one cell has 27 sids (bilist[0], gid 0)
+#
+#setuptime = 1.94
+#runtime   = 3.24
+#    0 time     3.1195   0.119605  0.0131278 21622
+#    1 time     3.1076   0.131522 0.00311184 21896
+#    2 time    3.08049   0.158634 0.00295162 21638
+#
+#    3 time    3.16077  0.0783658 0.00403547 21741

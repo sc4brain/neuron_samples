@@ -1,0 +1,257 @@
+// **********************************************************
+//
+// This simulation is based on the following paper:
+//
+// Maciej T. Lazarewicz, Michele Migliore, Giorgio A. Ascoli,
+// "A new bursting model of CA3 pyramidal cell physiology suggests multiple 
+// locations for spike initiation", 
+// Biosystems, 67(2002), 129-137
+//
+// Questions on how to use this model with NEURON should be directed to 
+// Maciej Lazarewicz (mailto:mlazarew@seas.upenn.edu) 
+//
+// Thanks to Leif Finkel and Elliot Menschik, UPENN, for valuable discussions on the model
+//
+// **********************************************************
+
+load_file("nrngui.hoc")
+
+// Set variable time step integration mehod
+cvode_active(1)
+
+Rm     = 60000   // [ohm cm2]
+RmDend = Rm / 2  // spines on dendrites are not implicitly simulated, but additional membrane area was accounted by dividing Rm by 2 and mulitplying Cm by 2
+RmSoma = Rm
+
+Cm     = 1
+CmSoma = Cm      // [uF/cm2]
+CmDend = Cm * 2
+
+RaAll  = 200     // [ohm cm]
+RaSoma = 200 
+
+Vrest  = -65     // [mV]
+
+celsius = 25.0   // [C deg]
+
+xopen("ca3a.geo")
+
+Mesh_th = 0.4
+
+gNa     = 0.035    // [S/cm2]
+gKdr    = 0.002    // [S/cm2]
+gKa     = 0.011    // [S/cm2]
+KaDt    = 11.0 / (7.0 * 100 )
+gKc     = 0.004    // [S/cm2]
+gKahp   = 0.0005    // [S/cm2] 
+gKm     = 0.0001   // [S/cm2]
+gKh     = 0.0001   // [S/cm2]
+gKd     = 0.00025  // [S/cm2]
+gCaL    = 0.0013   // [S/cm2]
+gCaN    = 0.0015   // [S/cm2]
+gCaT    = 0.001    // [S/cm2]
+
+xopen("mesh.hoc")
+xopen("fitness.hoc")
+xopen("utilities.hoc")
+
+access soma	
+
+// Set up current pulse
+
+objref inj
+
+inj      = new IClamp(0.5)
+inj.del  = 2  
+inj.dur  = 5  
+inj.amp  = 1  
+
+// Set up passive parameters
+
+proc ins_pasive() {
+
+	forall if(issection("soma")) { 
+		insert pas 
+		e_pas = Vrest 
+		g_pas = 1 / RmSoma 
+		Ra    = RaSoma 
+		cm    = CmSoma 
+	} else {
+		insert pas 
+		e_pas = Vrest 
+		g_pas = 1 / RmDend 
+		Ra    = RaAll  
+		cm    = CmDend 
+	}    	
+}
+
+// Functions for set up distributions of ion channels
+
+proc dist_Na() {
+
+	forall gbar_NaM99SL 	= gNa 
+}
+
+proc dist_Kdr() {
+
+	forall  gbar_KdrM99SL	= gKdr
+}
+
+proc dist_Ka() {
+
+	forall for (x) {
+
+		xdist = abs(distance(x))
+		gbar_KaDistM99SL(x)	= gKa * ( 1.0 + KaDt * xdist ) * ( xdist >  100.0 )
+ 	    	gbar_KaProxM99SL(x)	= gKa * ( 1.0 + KaDt * xdist ) * ( xdist <= 100.0 )
+	}
+
+}
+
+proc dist_Km() {
+
+	forall if(issection("soma.*") || issection("dend2[0]") || issection("dend2[1]") || issection("dend3[0]") ||  issection("dend3[2]") || issection("dend3[37]") || issection("dend3[38]") ) gbar_KmM95	= gKm else gbar_KmM95	= 0
+}
+
+proc dist_Kahp() {
+
+	forall { 
+     		gbar_KahpM95	= gKahp * 0.2
+		if(issection("dend4.*") || issection("dend5.*") || issection("dend6.*") || issection("dend7.*") || issection("dend8.*") || issection("dend9.*") ||  issection("dend10.*") || issection("basal.*"))  gbar_KahpM95	= gKahp
+		if(issection("soma.*")) gbar_KahpM95	= 0
+	}
+}
+
+proc dist_CaN() {
+
+	forall  gbar_CAnM95	= gCaN
+}
+
+proc dist_CaT() {
+
+	forall  gbar_CAtM95	= gCaT
+}
+
+proc dist_CaL() {
+
+	forall  if( abs( distance(x) ) < 50 ) gbar_CAlM95	= gCaL else gbar_CAlM95	= 0 
+}
+
+proc dist_Kc() {
+
+	forall for(x) if( abs( distance(x) ) < 150 ) 	gbar_KctBG99(x)	= gKc * ( 150.0 - abs( distance(x) ) ) / 150.0 else 	gbar_KctBG99	= 0
+}
+
+proc dist_Khd() {
+
+	ehd_KhdM01    = -30
+	forall for (x){ 
+
+		xdist = abs( distance(x) )
+                ghdbar_KhdM01(x) = gKh * ( 1 + 3 / 100 * xdist )
+                if (xdist > 100) vhalfl_KhdM01 = -90 else vhalfl_KhdM01 = -82
+       }
+}
+
+proc dist_Kd() {
+
+	forall  gbar_KdBG = gKd
+}
+
+// Set up active conductances
+
+proc ins_active() {
+
+	forall {
+		insert KdrM99SL
+		insert KaProxM99SL
+		insert KaDistM99SL
+		insert caM95
+ 	    	insert NaM99SL
+		insert KmM95
+		insert CAlM95
+    		insert CAnM95
+    		insert CAtM95
+		insert KahpM95
+		insert KctBG99
+		insert KhdM01
+		insert KdBG
+	}
+}
+
+proc dist_active() {
+
+	dist_Na()
+	dist_Kdr()
+	dist_Ka()
+	dist_Km()
+	dist_CaL()
+	dist_CaN()
+	dist_CaT()
+	dist_Kahp()
+	dist_Kc()
+	dist_Kd()
+	dist_Khd()
+}
+
+// Initialization
+
+proc init() {
+
+	forall {
+		v  = Vrest
+		ek = -91
+	}
+
+	finitialize(Vrest)
+        fcurrent()
+
+        // Here is implemented the assumption that at steady state there is no current crossing the cell membrane 
+	// by setting nonhomogenous reversal potential for leakage current
+        forall for (x) e_pas(x) = v(x) + ( ina(x) + ik(x) + ica(x) + i_KhdM01(x) ) / g_pas(x)
+
+        finitialize(Vrest)
+}
+
+// Main program
+
+ins_pasive()
+
+proc mesh_init() {
+
+	//compartmentalization function.
+	//To have compartments with a lambda length < $2 
+	//at $1 (Hz) - the value for $2 should be less than 0.1-0.3.
+	//To speedup the demo simulation a value of 0.4@100Hz is used.
+	//Slightly different values for the conductances would be needed
+	//to obtain the same results when using a different compartmentalization.
+	//Contact the author for more information.
+
+	nra = fast_mesh(100,Mesh_th)
+
+	soma nseg = 1
+	print "Number of Comp: ",nra
+
+	// Set up origin in soma
+
+	soma distance()
+	access soma
+
+	// Set conductances
+	dist_active()
+}
+
+// Insert active conductances
+ins_active()
+mesh_init()
+
+//xopen("ses1.ses")
+//PlotShape[0].exec_menu("Shape Plot")
+//PlotShape[0].show(0)
+
+tstop        = 140
+steps_per_ms = 40
+dt           = 0.025
+
+//init()
+//run()

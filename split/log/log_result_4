@@ -1,0 +1,171 @@
+numprocs=4
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+###############################################################
+#nhost     = 4
+#split     = 4
+				1 1 
+
+1 1 
+
+#c = 119017   maxfactor = 0.075   cm = 2231.5687 
+#total complexity is 120864
+#1 cells
+#96 pieces
+#maximum complexity is 30207.8 for host 3
+#load imbalance is -0.0%
+#maximum of 24 pieces on host 0
+#at least one cell is broken into 96 pieces (bilist[0], gid 0)
+#at least one cell has 51 sids (bilist[0], gid 0)
+				0.003205061 
+0.0061709881 5.0067902e-06 
+
+0.0045678616 
+		1 1 
+
+	1 
+	1 
+	0 
+	0 
+0 dend[197]   204 
+0 dend[524]   167 
+1 dend[946]   151 
+	0 
+	0 
+1 dend[558] 2   dend[1022]   256 180 
+
+2 dend[947]   6 
+3 dend[1243]   32 
+3 dend[1013]   51 
+4 dend[1015]   1 
+0 dend[484]   172 
+0 dend[0]   279 
+5 dend[1703]   139 
+4 dend[1244]   274 
+1 dend[483]   211 
+2 dend[525]   8 
+6 dend[2416]   180 
+3 dend[528]   28 
+1 dend[1188]   261 
+2 dend[1194]   3 
+4 dend[1180]   38 
+3 dend[1242]   33 
+7 dend[2944]   129 
+5 dend[1521]   221 
+8 dend[3187]   65 
+9 dend[3286]   9 
+6 dend[1681]   98 
+5 dend[1522]   205 
+7 dend[2850]   7 
+10 dend[4044]   122 
+4 dend[1524]   256 
+11 dend[5315]   5 40 
+dend[1682]   22 
+12 dend[5507]   64 
+6 dend[2873]   64 
+8 dend[3004]   238 
+6 dend[1702]   273 
+9 dend[3012]   139 
+7 dend[2946]   188 
+13 dend[5508]   235 
+7 dend[2430]   254 
+10 dend[3191]   265 
+11 dend[3561]   12 
+8 dend[3285]   260 
+14 dend[6374]   275 
+8 dend[2867]   273 
+9 dend[3559]   147 
+15 dend[6499] 10   dend[4046] 160   
+11 
+12 dend[4478]   277 
+9 dend[4304]   54 
+13 dend[4937]   100 
+14 dend[4946]   63 
+10 dend[4316]   159 
+15 dend[5428]   13 
+16 dend[5510]   1 
+16 dend[6927]   262 
+11 dend[4303]   11 dend[5005]   124 
+273 
+17 dend[5624]   273 
+12 dend[5311]   158 
+17 dend[7419]   255 
+12 dend[4594]   278 
+13 dend[4615]   4 
+18 dend[5633]   264 
+13 dend[5321]   244 
+14 dend[5425]   1 
+14 dend[4620]   84 
+18 dend[7507]   276 
+15 dend[5806]   68 
+15 dend[5002]   135 
+19 dend[8233]   255 
+19 dend[7920]   218 
+16 dend[5811]   259 
+16 dend[6281]   231 
+20 dend[11437]   258 
+20 dend[8690]   236 
+21 dend[11442]   141 
+17 dend[7527]   223 
+17 dend[6500]   245 
+22 dend[11808]   189 
+23 dend[12222]   42 
+21 dend[8809] 	0 
+  	Vector[223860] 
+278 	0 
+
+7477	7351	7391	7381	
+	4 
+[  1]	5 
+balance 1.0104054 
+22 dend[9762]   19 
+18 dend[7918]   268 
+18 dend[7525]   146 
+19 dend[7925]   115 
+20 dend[7936]   3 
+21 dend[9763]   65 
+23 dend[11600]   278 
+	0 
+	Vector[225298] 
+	0 
+7494	7431	7438	7429	
+	4 
+[  3]	5 
+balance 1.0061762 
+19 dend[9477]   261 
+22 dend[11452]   143 
+20 dend[9480]   113 
+23 dend[13518]   274 
+	0 
+	Vector[225657] 
+21 dend[10242]   220 
+	0 
+7438	7566	7422	7414	
+	4 
+[  2]	5 
+balance 1.0142091 
+22 dend[11681]   277 
+23 dend[12218]   48 
+	0 
+	Vector[226178] 
+	0 
+7470	7447	7493	7470	
+	4 
+[  0]	5 
+balance 1.003079 
+		3.8146973e-06 
+	4.0531158e-06 	
+5.0067902e-06 5.9604645e-06 
+
+#
+#setuptime = 2.3
+#runtime   = 5.04
+#    0 time    4.90025   0.137431  0.0216265 29880
+#    1 time    4.89662    0.14108 0.00322294 29600
+#    2 time    4.95734  0.0803835 0.00385499 29840
+#
+#    3 time    4.89001   0.147692 0.00335407 29792

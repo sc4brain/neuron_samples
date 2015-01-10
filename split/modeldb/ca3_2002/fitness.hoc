@@ -1,0 +1,225 @@
+// Utilities for NEURON
+// (c) Maciej Lazarewicz (mlazarew@gmu.edu) (2001) v1.1
+
+
+objref p_x,p_y,file2,p_y_1,sub,w1,w2,p_x_1,p_y_2
+
+func fitness() {
+	return metr()
+}
+
+//This function calculate fir functions f,g sum(|f(x)-g(x)|)/701 for x=0, 0.2 , ... ,140
+func analyze3() {
+	p_x=new Vector(3000)
+	p_y=new Vector(3000)
+	file2=new File()
+	file2.ropen("ExpData/wong4a.dat")
+	p_x.scanf(file2,1,2)
+	file2.seek()
+	p_y.scanf(file2,2,2)
+	file2.close()
+
+	p_x_1=new Vector(3000)
+	p_x_1.indgen(0,140,0.2)
+	p_y_1=new Vector(3000)
+	p_y_2=new Vector(3000)
+	p_y_1=w2.c.interpolate(p_x_1,w1)
+	p_y_2=p_y.c.interpolate(p_x_1,p_x)
+	p_y_1.sub(p_y_2)
+	p_y_1.abs()
+	fit6 = p_y_1.sum() / p_y_1.size()
+	print "Fit6:",fit6
+	return fit6 
+}
+
+double time_spike[100],time_antispike[100],ts[5],y_spike[100],y_antispike[100],tas[5],yas[5],ys[5]
+objref  file10
+
+func analyze2() {
+// w1 - x , w2 - y
+file10 = new File()
+
+//analyze pattern file M95.dat
+/*
+	p_x=new Vector(3000)
+	p_y=new Vector(3000)
+	file2=new File()
+	file2.ropen("ExpData/wong4a.dat")
+	p_x.scanf(file2,1,2)
+	file2.seek()
+	p_y.scanf(file2,2,2)
+	file2.close()
+	w1=p_x
+	w2=p_y
+*/
+
+	nr_spike=0
+	nr_antispike=0
+
+//Save Spikes.dat file
+//file10.wopen("Data/Spikes.dat")
+
+for(i=5;i<w1.size();i+=1) {
+	if(w2.x[i-5]<w2.x[i-4] && w2.x[i-4]<w2.x[i-3] && w2.x[i-2]>w2.x[i-1] && w2.x[i-1]>w2.x[i-0] ) {
+		nr_spike+=1
+		time_spike[nr_spike]=(w1.x[i-3]+w1.x[i-2])/2 
+		y_spike[nr_spike]=(w2.x[i-3]+w2.x[i-2])/2 
+		print "Spike #",nr_spike,time_spike[nr_spike]
+		i+=5
+//		file10.printf("%g %g\n",time_spike[nr_spike],y_spike[nr_spike])
+	}
+	if(w1.x[i]>13 && w2.x[i-5]>w2.x[i-4] && w2.x[i-4]>w2.x[i-3] && w2.x[i-2]<w2.x[i-1] && w2.x[i-1]<w2.x[i-0] ) {
+		nr_antispike+=1
+		time_antispike[nr_antispike]=(w1.x[i-3]+w1.x[i-2])/2 
+		y_antispike[nr_antispike]=(w2.x[i-3]+w2.x[i-2])/2 
+		print "AntiSpike #",nr_antispike,time_antispike[nr_antispike]
+		i+=5
+//		file10.printf("%g %g\n",time_antispike[nr_antispike],y_antispike[nr_antispike])
+	}
+}
+print  "#Spikes:",nr_spike,"#Antispikes:",nr_antispike
+
+//file10.close()
+
+fit3=0
+
+
+//These are data for Wong5a
+ts[1]	= 12.2449
+ts[2]	= 21.75965 
+ts[3]	= 31.3874
+ts[4]	= 37.8367
+
+ys[1]	=  26.9748
+ys[2]	=  14.7375
+ys[3]	=   7.96314
+ys[4]	= -19.7261
+
+tas[1]	= 15.6537
+tas[2]	= 27.5673 
+tas[3]	= 35.74985
+
+yas[1]	= -54.0463
+yas[2]	= -50.2896
+yas[3]	= -40.7471
+
+fit3=0
+csp=nr_spike
+if(nr_spike>4)csp=4
+for(i=1;i<csp+1;i+=1)fit3+=abs(ts[i]-time_spike[i])+abs(ys[i]-y_spike[i])
+
+fit4=0
+csp=nr_antispike
+if(nr_antispike>3)csp=3
+for(i=1;i<csp+1;i+=1)fit4+=abs(tas[i]-time_antispike[i])+abs(yas[i]-y_antispike[i])
+
+fit5=(fit3+fit4)/(nr_spike+nr_antispike)
+print "Fit3:",fit3,"Fit4:",fit4,"Fit5:",fit5
+
+if(nr_spike==0 || nr_antispike==0) return  1000
+if(nr_spike==1) return  fit5*	p_x=new Vector(30000)
+	p_y=new Vector(30000)
+	file2=new File()
+	file2.ropen("ExpData/wong4a.dat")
+	p_x.scanf(file2,1,2)
+	file2.seek()
+	p_y.scanf(file2,2,2)
+	file2.close()
+
+	p_x_1=new Vector(3000)
+	p_x_1.indgen(0,140,0.2)
+	p_y_1=new Vector(3000)
+	p_y_2=new Vector(3000)
+	p_y_1=w2.c.interpolate(p_x_1,w1)
+	p_y_2=p_y.c.interpolate(p_x_1,p_x)
+	p_y_1.sub(p_y_2)
+	p_y_1.abs()
+	fit6 = p_y_1.sum() / p_y_1.size()
+	print "Fit6:",fit6
+	return fit6 400
+if(nr_spike==2) return  fit5*300
+if(nr_spike==3) return  fit5*200
+if(nr_spike==4) return  fit5
+if(nr_spike==5) return  fit5*100
+if(nr_spike==6) return  fit5*100
+if(nr_spike==7) return  fit5*100
+if(nr_spike==8) return  fit5*100
+if(nr_spike==9) return  fit5*100
+if(nr_spike==10) return fit5*100
+if(nr_spike>10) return  10000
+}
+
+npt=100
+objref p_dv,gr1,gr2,w_dv
+double delta1[npt][npt],delta2[npt][npt],coor[4]
+
+//This fitness function is based on 'Computational Neuroscience: Realistic Modeling for Experimentalists' Erik de Schutter  Robert C. Cannon (Editor)
+
+func metr() {
+//	gr1=new Graph()
+//	gr2=new Graph()
+	p_dv=new Vector(3000)
+	w_dv=new Vector(3000)
+	p_x=new Vector(3000)
+	p_y=new Vector(3000)
+	file2=new File()
+//	file2.ropen("ExpData/wong4a.dat")
+	file2.ropen("ExpData/M95_100ms.dat")
+	p_x.scanf(file2,1,2)
+	file2.seek()
+	p_y.scanf(file2,2,2)
+	file2.close()
+
+	p_x_1=new Vector(3000)
+	p_x_1.indgen(0,tstop,tstop/npt)
+	p_y_1=new Vector(3000)
+	p_y_2=new Vector(3000)
+
+
+//	gr1.size(-70,25,-80,300)
+//	gr2.size(-70,25,-80,300)
+
+	for(i=0;i<npt;i+=1) {
+		for(j=0;j<npt;j+=1) { 
+			delta1[i][j]=0
+			delta2[i][j]=0
+		} 
+	}
+	
+	v_min=-100
+	v_max=100
+	dv_min=-100
+	dv_max=500
+
+	for(i=1;i<p_y.size();i+=1) {
+		p_dx= p_x.x[i] - p_x.x[i-1]
+		if(p_dx<0.001)p_dx=1
+		p_dv.x[i] = ( p_y.x[i] - p_y.x[i-1] ) /  p_dx 		
+//		gr1.mark(p_y.x[i],p_dv.x[i])
+		if(p_y.x[i]> v_max) print "v_max for pattern is too small !!!"
+		if(p_dv.x[i]> dv_max) print "dv_max for pattern is too small !!!"
+		if(p_y.x[i]< v_min) print "v_min for pattern is too big !!!"
+		if(p_dv.x[i]< dv_min) print "dv_min for pattern is too big !!!"
+		delta1[int((p_y.x[i]-v_min)*npt/(v_max-v_min))][int((p_dv.x[i]-dv_min)*npt/(dv_max-dv_min))]+=1
+	}
+
+	for(i=1;i<w2.size();i+=1) {
+		w_dx= w1.x[i] - w1.x[i-1]
+		if(w_dx<0.0001)w_dx=1
+		w_dv.x[i] = ( w2.x[i] - w2.x[i-1] ) /  w_dx 		
+//		gr2.mark(w2.x[i],w_dv.x[i])
+//		print i,w1.x[i],w2.x[i],w_dv.x[i]
+		if(w2.x[i]> v_max) print "v_max for result is too small !!!"
+		if(w_dv.x[i]> dv_max) print "dv_max for result is too small !!!"
+		if(w2.x[i]< v_min) print "v_min for result is too big !!!"
+		if(w_dv.x[i]< dv_min) print "dv_min for result is too big !!!"		
+		delta2[int((w2.x[i]-v_min)*npt/(v_max-v_min))][int((w_dv.x[i]-dv_min)*npt/(dv_max-dv_min))]+=1
+	}
+	fit13=0
+	for(i=0;i<npt;i+=1) { 
+		for(j=0;j<npt;j+=1) { 
+			fit13+=(delta1[i][j]-delta2[i][j])^2
+		} 
+	}
+	return fit13/(npt*npt)
+}
