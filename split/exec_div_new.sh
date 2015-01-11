@@ -1,11 +1,36 @@
 #!/bin/sh
 
-#NRN=~/github/neuron_kplus/exec_icc/x86_64/bin/nrniv
-NRN=./x86_64/special
-DIV=2
-TMP=tmp.txt
-#FILENAME=../hoc/spl/Swc_BN_1056_div1.spl
 
-mpiexec -n 1 $NRN -mpi -NSTACK 20000 -NFRAME 1000 -c split=$DIV -c model=5 -c PRINT_NODE=0 init.hoc
-#cat $TMP | grep EXIST > $FILENAME
-#cat $TMP | grep MSPLIT >> $FILENAME
+NRN=./x86_64/special
+TMP=tmp.txt
+FILENAME=./split${DIV}.txt
+
+DIV=8
+FILENAME=./split${DIV}.txt
+mpiexec -n $DIV $NRN -mpi -NSTACK 80000 -NFRAME 2000 -c split=$DIV -c model=5 -c PRINT_NODE=0 init.hoc > $TMP
+cat $TMP | grep EXIST > $FILENAME
+cat $TMP | grep MSPLIT >> $FILENAME
+
+DIV=16
+FILENAME=./split${DIV}.txt
+mpiexec -n $DIV $NRN -mpi -NSTACK 80000 -NFRAME 2000 -c split=$DIV -c model=5 -c PRINT_NODE=0 init.hoc > $TMP
+cat $TMP | grep EXIST > $FILENAME
+cat $TMP | grep MSPLIT >> $FILENAME
+
+DIV=32
+FILENAME=./split${DIV}.txt
+mpiexec -n $DIV $NRN -mpi -NSTACK 80000 -NFRAME 2000 -c split=$DIV -c model=5 -c PRINT_NODE=0 init.hoc > $TMP
+cat $TMP | grep EXIST > $FILENAME
+cat $TMP | grep MSPLIT >> $FILENAME
+
+DIV=64
+FILENAME=./split${DIV}.txt
+mpiexec -n $DIV $NRN -mpi -NSTACK 80000 -NFRAME 2000 -c split=$DIV -c model=5 -c PRINT_NODE=0 init.hoc > $TMP
+cat $TMP | grep EXIST > $FILENAME
+cat $TMP | grep MSPLIT >> $FILENAME
+
+DIV=128
+FILENAME=./split${DIV}.txt
+mpiexec -n $DIV $NRN -mpi -NSTACK 80000 -NFRAME 2000 -c split=$DIV -c model=5 -c PRINT_NODE=0 init.hoc > $TMP
+cat $TMP | grep EXIST > $FILENAME
+cat $TMP | grep MSPLIT >> $FILENAME
