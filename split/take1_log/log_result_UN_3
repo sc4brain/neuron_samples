@@ -1,0 +1,158 @@
+numprocs=3
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+	1 
+	1 
+	1 
+	1 
+		1 
+	1 
+1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 	
+1 
+	1 	
+1 
+	1 
+	1 
+		1 
+1 
+	1 
+###############################################################
+#nhost     = 3
+#split     = 3
+cell created 1062 
+cell created 1062 
+cell created 1062 
+#c = 83003   maxfactor = 0.1   cm = 2766.7667 
+#total complexity is 83375.4
+#1 cells
+#54 pieces
+#maximum complexity is 27777.2 for host 2
+#load imbalance is -0.1%
+#maximum of 20 pieces on host 1
+#at least one cell is broken into 54 pieces (bilist[0], gid 0)
+#at least one cell has 27 sids (bilist[0], gid 0)
+	1 
+	1 
+	1 
+	0 
+	0 
+0 Cell_UN_1062[0].dend[671]   122 
+1 Cell_UN_1062[0].dend[847]   5 
+2 Cell_UN_1062[0].dend[909]   10 
+3 Cell_UN_1062[0].dend[953]   79 
+4 Cell_UN_1062[0].dend[1104]   145 
+	0 
+5 Cell_UN_1062[0].dend[1401]   210 
+0 Cell_UN_1062[0].dend[848]   310 
+6 Cell_UN_1062[0].dend[1469]   263 
+0 Cell_UN_1062[0].dend[0]   1001 
+1 Cell_UN_1062[0].dend[904]   225 
+2 Cell_UN_1062[0].dend[954]   132 
+3 Cell_UN_1062[0].dend[1101]   8 
+7 Cell_UN_1062[0].dend[1474]   320 
+1 Cell_UN_1062[0].dend[672]   290 
+2 Cell_UN_1062[0].dend[673]   1 
+3 Cell_UN_1062[0].dend[828]   1 
+4 Cell_UN_1062[0].dend[1304]   140 
+4 Cell_UN_1062[0].dend[829]   158 
+5 Cell_UN_1062[0].dend[1399]   153 
+8 Cell_UN_1062[0].dend[1909]   321 
+9 Cell_UN_1062[0].dend[2028]   163 
+6 Cell_UN_1062[0].dend[1400]   234 
+5 Cell_UN_1062[0].dend[849]   331 
+6 Cell_UN_1062[0].dend[906]   1 
+7 Cell_UN_1062[0].dend[2127]   189 
+10 Cell_UN_1062[0].dend[2706]   341 
+7 Cell_UN_1062[0].dend[950]   330 
+8 Cell_UN_1062[0].dend[955]   19 
+8 Cell_UN_1062[0].dend[2129]   321 
+9 Cell_UN_1062[0].dend[1305]   138 
+11 Cell_UN_1062[0].dend[3633]   339 
+10 Cell_UN_1062[0].dend[1402]   181 
+12 Cell_UN_1062[0].dend[3947]   229 
+9 Cell_UN_1062[0].dend[2704]   343 
+11 Cell_UN_1062[0].dend[1652]   304 
+13 Cell_UN_1062[0].dend[4336]   302 
+10 Cell_UN_1062[0].dend[2789]   300 
+14 Cell_UN_1062[0].dend[5537]   169 
+11 Cell_UN_1062[0].dend[3387]   201 
+12 Cell_UN_1062[0].dend[1864]   305 
+12 Cell_UN_1062[0].dend[3388]   54 
+13 Cell_UN_1062[0].dend[1865]   94 
+15 Cell_UN_1062[0].dend[8595]   189 
+14 Cell_UN_1062[0].dend[2034]   99 
+15 Cell_UN_1062[0].dend[2128]   1 
+13 Cell_UN_1062[0].dend[3484]   303 
+16 Cell_UN_1062[0].dend[8598]   258 
+	0 
+	Vector[211388] 
+	0 
+9413	9209	9079	
+	3 
+[  2]	5 
+balance 1.0194217 
+16 Cell_UN_1062[0].dend[3177]   344 
+14 Cell_UN_1062[0].dend[3948]   331 
+17 Cell_UN_1062[0].dend[3384]   197 
+15 Cell_UN_1062[0].dend[5084]   188 
+16 Cell_UN_1062[0].dend[5087]   23 
+	0 
+	Vector[217030] 
+	0 
+9325	9063	9269	
+	3 
+[  0]	5 
+balance 1.011498 
+18 Cell_UN_1062[0].dend[3486]   223 
+19 Cell_UN_1062[0].dend[4136]   194 
+	0 
+	Vector[201847] 
+	0 
+9242	9139	9317	
+	3 
+[  1]	5 
+balance 1.0091342 
+	0.0085258484 
+	0.029789925 
+	7.8678131e-06 
+	3.0994415e-06 
+		4.0531158e-06 
+#
+#setuptime = 2.12
+4.0531158e-06 
+#runtime   = 3.8
+#    0 time    3.69843   0.101565  0.0125322 27657
+#
+#    1 time    3.70447  0.0955293  0.0038228 27698
+#    2 time    3.72505   0.074971 0.00322747 27701

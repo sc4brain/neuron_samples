@@ -1,0 +1,32 @@
+numprocs=1
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+###############################################################
+#nhost     = 1
+#split     = 0
+cell created 1062 
+	0 
+	0 
+#
+#setuptime = 0.72
+#runtime   = 10.81
+#    0 time    10.8092          0          0 83003
+#

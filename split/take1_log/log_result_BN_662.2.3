@@ -1,0 +1,66 @@
+numprocs=2
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+###############################################################
+#nhost     = 2
+#split     = 3
+cell created 662 
+cell created 662 
+#c = 86673   maxfactor = 0.1   cm = 4333.65 
+#total complexity is 87493.6
+#1 cells
+1 nrniv: Arg out of range in user function
+#39 pieces
+1  in init.hoc near line 93
+1  if (model==4) mycell()
+#maximum complexity is 43649.4 for host 1
+  #load imbalance is -0.2%
+#maximum of 20 pieces on host 0
+  #at least one cell is broken into 39 pieces (bilist[0], gid 0)
+  #at least one cell has 21 sids (bilist[0], gid 0)
+    0 nrniv: Arg out of range in user function
+ 0  in init.hoc near line 93
+ 0  if (model==4) mycell()
+                               ^
+        0 List[15].object(0)
+      0 CellBalanceInfo[0].msdiv(Cell_BN_662[0], SectionRef[12358], 100, ParallelContext[0], 0)
+    0 CellBalanceInfo[0].multisplit(NetCon[0], 100, ParallelContext[0], 0)
+  0 multisplit()
+and others
+application called MPI_Abort(MPI_COMM_WORLD, -1) - process 0
+   ^
+        1 List[14].object(0)
+      1 CellBalanceInfo[0].msdiv(Cell_BN_662[0], SectionRef[0], 100, ParallelContext[0]rank 0 in job 101  ai-sentai_49478   caused collective abort of all ranks
+  exit status of rank 0: return code 255 

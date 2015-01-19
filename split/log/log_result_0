@@ -1,0 +1,26 @@
+numprocs=4
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+###############################################################
+#nhost     = 4
+#split     = 0
+	1 
+	1 
+	1 
+	1 
+#c = 119017   maxfactor = 0   cm = 0 
+0 nrniv: Stack too deep. Increase with -NSTACK stacksize option
+0  in init.hoc near line 59
+0  ^
+        0 LoadBalance[0].ms_split(Vector[13], 187, 1, 0, 0)
+      0 LoadBalance[0].ms_split(Vector[13], 169, 1, 0, 0)
+    0 LoadBalance[0].ms_split(Vector[13], 154, 1, 0, 0)
+  0 LoadBalance[0].ms_split(Vector[13], 143, 1, 0, 0)
+and others
+application called MPI_Abort(MPI_COMM_WORLD, -1) - process 0
+rank 0 in job 145  ai-sentai_56885   caused collective abort of all ranks
+  exit status of rank 0: killed by signal 9 

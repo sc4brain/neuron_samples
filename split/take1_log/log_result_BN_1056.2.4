@@ -1,0 +1,268 @@
+numprocs=2
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+		1 
+1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+###############################################################
+#nhost     = 2
+#split     = 4
+cell created 1056 
+cell created 1056 
+#c = 31101   maxfactor = 0.075   cm = 1166.2875 
+#total complexity is 31718
+#1 cells
+#52 pieces
+#maximum complexity is 15860.2 for host 1
+#load imbalance is 0.0%
+#maximum of 26 pieces on host 0
+#at least one cell is broken into 52 pieces (bilist[0], gid 0)
+#at least one cell has 26 sids (bilist[0], gid 0)
+	1 
+	1 
+	0 
+0 Cell_BN_1056[0].dend[0]   20 
+1 Cell_BN_1056[0].dend[119]   116 
+2 Cell_BN_1056[0].dend[214]   120 
+3 Cell_BN_1056[0].dend[256]   143 
+4 Cell_BN_1056[0].dend[257]   144 
+5 Cell_BN_1056[0].dend[361]   2 
+6 Cell_BN_1056[0].dend[993]   145 
+7 Cell_BN_1056[0].dend[1138]   4 
+	0 
+8 Cell_BN_1056[0].dend[1139]   64 
+9 Cell_BN_1056[0].dend[1207]   5 
+0 Cell_BN_1056[0].dend[2]   98 
+10 Cell_BN_1056[0].dend[1208]   108 
+1 Cell_BN_1056[0].dend[118]   50 
+2 Cell_BN_1056[0].dend[212]   4 
+11 Cell_BN_1056[0].dend[1242]   41 
+12 Cell_BN_1056[0].dend[1321]   142 
+3 Cell_BN_1056[0].dend[213]   146 
+4 Cell_BN_1056[0].dend[360]   5 
+13 Cell_BN_1056[0].dend[1423]   86 
+14 Cell_BN_1056[0].dend[1538]   40 
+15 Cell_BN_1056[0].dend[1591]   44 
+5 Cell_BN_1056[0].dend[391]   145 
+6 Cell_BN_1056[0].dend[1206]   16 
+16 Cell_BN_1056[0].dend[1984]   115 
+7 Cell_BN_1056[0].dend[1233]   97 
+17 Cell_BN_1056[0].dend[2002]   77 
+18 Cell_BN_1056[0].dend[2269]   7 
+19 Cell_BN_1056[0].dend[2270]   6 
+20 Cell_BN_1056[0].dend[2713]   11 
+8 Cell_BN_1056[0].dend[1243]   72 
+21 Cell_BN_1056[0].dend[3041]   53 
+9 Cell_BN_1056[0].dend[1318]   48 
+22 Cell_BN_1056[0].dend[3043]   92 
+10 Cell_BN_1056[0].dend[1320]   137 
+11 Cell_BN_1056[0].dend[1417]   23 Cell_BN_1056[0].dend[3108]   131 
+44 
+12 Cell_BN_1056[0].dend[1533]   1 
+24 Cell_BN_1056[0].dend[3279]   138 
+13 Cell_BN_1056[0].dend[1536]   127 
+14 Cell_BN_1056[0].dend[1592]   9 
+15 Cell_BN_1056[0].dend[1593]   22 
+25 Cell_BN_1056[0].dend[3359]   96 
+	0 
+	Vector[117830] 
+	0 
+3895	3917	3905	3903	
+	4 
+[  1]	5 
+balance 1.003073 
+16 Cell_BN_1056[0].dend[1845]   143 
+17 Cell_BN_1056[0].dend[1864]   118 
+18 Cell_BN_1056[0].dend[1866]   71 
+19 Cell_BN_1056[0].dend[2001]   138 
+20 Cell_BN_1056[0].dend[2003]   29 
+21 Cell_BN_1056[0].dend[2291]   116 
+22 Cell_BN_1056[0].dend[2680]   85 
+23 Cell_BN_1056[0].dend[2712]   93 
+24 Cell_BN_1056[0].dend[2714]   120 
+25 Cell_BN_1056[0].dend[3042]   5 
+	0 
+	Vector[119650] 
+	0 
+3897	3879	3878	3878	
+	4 
+[  0]	5 
+balance 1.0036055 
+		0.037894964 
+5.0067902e-06 
+*** glibc detected *** nrniv: corrupted double-linked list: 0x0000000001b2c450 ***
+======= Backtrace: =========
+/lib/libc.so.6[0x7f5aaeda0ce8]
+/lib/libc.so.6[0x7f5aaeda3078]
+/lib/libc.so.6(cfree+0x76)[0x7f5aaeda32a6]
+/home/naska/neuron/icc/nrn/x86_64/lib/libnrniv.so.0(_ZN17MultiSplitControl14exchange_setupEv+0x25d0)[0x7f5ab1b06b30]
+/home/naska/neuron/icc/nrn/x86_64/lib/libnrniv.so.0(_ZN17MultiSplitControl10multisplitEdii+0x8ba)[0x7f5ab1b0435a]
+/home/naska/neuron/icc/nrn/x86_64/lib/libnrniv.so.0(nrnmpi_multisplit+0x85)[0x7f5ab1b03a55]
+/home/naska/neuron/icc/nrn/x86_64/lib/libnrniv.so.0[0x7f5ab1ad9b6b]
+/home/naska/neuron/icc/nrn/x86_64/lib/libnrnoc.so.0(call_ob_proc+0x2ec)[0x7f5ab230e96c]
+/home/naska/neuron/icc/nrn/x86_64/lib/libnrnoc.so.0(hoc_object_component+0x6c8)[0x7f5ab230e358]
+/home/naska/neuron/icc/nrn/x86_64/lib/libnrnoc.so.0(hoc_execute+0x5b)[0x7f5ab2307afb]
+/home/naska/neuron/icc/nrn/x86_64/lib/liboc.so.0[0x7f5ab209318c]
+/home/naska/neuron/icc/nrn/x86_64/lib/liboc.so.0(hoc_main1+0x151)[0x7f5ab2092a91]
+/home/naska/neuron/icc/nrn/x86_64/lib/libivoc.so.0(_ZN2Oc3runEiPPc+0xd)[0x7f5ab174b0fd]
+nrniv(ivocmain+0x6dd)[0x405a7d]
+nrniv(main+0x72)[0x405342]
+/lib/libc.so.6(__libc_start_main+0xe6)[0x7f5aaed475a6]
+nrniv[0x4050a9]
+======= Memory map: ========
+00400000-004ff000 r-xp 00000000 08:11 43720943                           /home/naska/neuron/icc/nrn/x86_64/bin/nrniv
+006fe000-00701000 rw-p 000fe000 08:11 43720943                           /home/naska/neuron/icc/nrn/x86_64/bin/nrniv
+00701000-00727000 rw-p 00701000 00:00 0 
+00b51000-01c51000 rw-p 00b51000 00:00 0                                  [heap]
+7f5aa8000000-7f5aa8021000 rw-p 7f5aa8000000 00:00 0 
+7f5aa8021000-7f5aac000000 ---p 7f5aa8021000 00:00 0 
+7f5aacc67000-7f5aacf0a000 rw-p 7f5aacc67000 00:00 0 
+7f5aacf0a000-7f5aacf39000 r-xp 00000000 08:11 49676669                   /home/naska/NData/hoc/multisplit/multisplit/x86_64/.libs/libnrnmech.so.0.0.0
+7f5aacf39000-7f5aad139000 ---p 0002f000 08:11 49676669                   /home/naska/NData/hoc/multisplit/multisplit/x86_64/.libs/libnrnmech.so.0.0.0
+7f5aad139000-7f5aad13c000 rw-p 0002f000 08:11 49676669                   /home/naska/NData/hoc/multisplit/multisplit/x86_64/.libs/libnrnmech.so.0.0.0
+7f5aad13c000-7f5aae15d000 rw-s 00000000 00:15 70025                      /dev/shm/mpich_shar_tmpLBTp0L (deleted)
+7f5aae15d000-7f5aae162000 r-xp 00000000 08:11 3697249                    /usr/lib/libXdmcp.so.6.0.0
+7f5aae162000-7f5aae361000 ---p 00005000 08:11 3697249                    /usr/lib/libXdmcp.so.6.0.0
+7f5aae361000-7f5aae362000 rw-p 00004000 08:11 3697249                    /usr/lib/libXdmcp.so.6.0.0
+7f5aae362000-7f5aae364000 r-xp 00000000 08:11 3697238                    /usr/lib/libXau.so.6.0.0
+7f5aae364000-7f5aae563000 ---p 00002000 08:11 3697238                    /usr/lib/libXau.so.6.0.0
+7f5aae563000-7f5aae564000 r--p 00001000 08:11 3697238                    /usr/lib/libXau.so.6.0.0
+7f5aae564000-7f5aae565000 rw-p 00002000 08:11 3697238                    /usr/lib/libXau.so.6.0.0
+7f5aae565000-7f5aae580000 r-xp 00000000 08:11 3696136                    /usr/lib/libxcb.so.1.1.0
+7f5aae580000-7f5aae77f000 ---p 0001b000 08:11 3696136                    /usr/lib/libxcb.so.1.1.0
+7f5aae77f000-7f5aae780000 r--p 0001a000 08:11 3696136                    /usr/lib/libxcb.so.1.1.0
+7f5aae780000-7f5aae781000 rw-p 0001b000 08:11 3696136                    /usr/lib/libxcb.so.1.1.0
+7f5aae781000-7f5aae897000 r-xp 00000000 08:11 28885055                   /opt/intel/Compiler/11.1/069/lib/intel64/libsvml.so
+7f5aae897000-7f5aae996000 ---p 00116000 08:11 28885055                   /opt/intel/Compiler/11.1/069/lib/intel64/libsvml.so
+7f5aae996000-7f5aae997000 rw-p 00115000 08:11 28885055                   /opt/intel/Compiler/11.1/069/lib/intel64/libsvml.so
+7f5aae997000-7f5aaebe5000 r-xp 00000000 08:11 28885033                   /opt/intel/Compiler/11.1/069/lib/intel64/libimf.so
+7f5aaebe5000-7f5aaece4000 ---p 0024e000 08:11 28885033                   /opt/intel/Compiler/11.1/069/lib/intel64/libimf.so
+7f5aaece4000-7f5aaed29000 rw-p 0024d000 08:11 28885033                   /opt/intel/Compiler/11.1/069/lib/intel64/libimf.so
+7f5aaed29000-7f5aaee91000 r-xp 00000000 08:11 11812915                   /lib/libc-2.9.so
+7f5aaee91000-7f5aaf091000 ---p 00168000 08:11 11812915                   /lib/libc-2.9.so
+7f5aaf091000-7f5aaf095000 r--p 00168000 08:11 11812915                   /lib/libc-2.9.so
+7f5aaf095000-7f5aaf096000 rw-p 0016c000 08:11 11812915                   /lib/libc-2.9.so
+7f5aaf096000-7f5aaf09b000 rw-p 7f5aaf096000 00:00 0 
+7f5aaf09b000-7f5aaf0b1000 r-xp 00000000 08:11 11812925                   /lib/libgcc_s.so.1
+7f5aaf0b1000-7f5aaf2b1000 ---p 00016000 08:11 11812925                   /lib/libgcc_s.so.1
+7f5aaf2b1000-7f5aaf2b2000 r--p 00016000 08:11 11812925                   /lib/libgcc_s.so.1
+7f5aaf2b2000-7f5aaf2b3000 rw-p 00017000 08:11 11812925                   /lib/libgcc_s.so.1
+7f5aaf2b3000-7f5aaf3a4000 r-xp 00000000 08:11 3698123                    /usr/lib/libstdc++.so.6.0.10
+7f5aaf3a4000-7f5aaf5a4000 ---p 000f1000 08:11 3698123                    /usr/lib/libstdc++.so.6.0.10
+7f5aaf5a4000-7f5aaf5ab000 r--p 000f1000 08:11 3698123                    /usr/lib/libstdc++.so.6.0.10
+7f5aaf5ab000-7f5aaf5ad000 rw-p 000f8000 08:11 3698123                    /usr/lib/libstdc++.so.6.0.10
+7f5aaf5ad000-7f5aaf5c0000 rw-p 7f5aaf5ad000 00:00 0 
+7f5aaf5c0000-7f5aaf5c7000 r-xp 00000000 08:11 11813011                   /lib/librt-2.9.so
+7f5aaf5c7000-7f5aaf7c6000 ---p 00007000 08:11 11813011                   /lib/librt-2.9.so
+7f5aaf7c6000-7f5aaf7c7000 r--p 00006000 08:11 11813011                   /lib/librt-2.9.so
+7f5aaf7c7000-7f5aaf7c8000 rw-p 00007000 08:11 11813011                   /lib/librt-2.9.so
+7f5aaf7c8000-7f5aaf7df000 r-xp 00000000 08:11 11813004                   /lib/libpthread-2.9.so
+7f5aaf7df000-7f5aaf9de000 ---p 00017000 08:11 11813004                   /lib/libpthread-2.9.so
+7f5aaf9de000-7f5aaf9df000 r--p 00016000 08:11 11813004                   /lib/libpthread-2.9.so
+7f5aaf9df000-7f5aaf9e0000 rw-p 00017000 08:11 11813004                   /lib/libpthread-2.9.so
+7f5aaf9e0000-7f5aaf9e4000 rw-p 7f5aaf9e0000 00:00 0 
+7f5aaf9e4000-7f5aaf9e6000 r-xp 00000000 08:11 11812936                   /lib/libdl-2.9.so
+7f5aaf9e6000-7f5aafbe6000 ---p 00002000 08:11 11812936                   /lib/libdl-2.9.so
+7f5aafbe6000-7f5aafbe7000 r--p 00002000 08:11 11812936                   /lib/libdl-2.9.so
+7f5aafbe7000-7f5aafbe8000 rw-p 00003000 08:11 11812936                   /lib/libdl-2.9.so
+7f5aafbe8000-7f5aafc6c000 r-xp 00000000 08:11 11812943                   /lib/libm-2.9.so
+7f5aafc6c000-7f5aafe6b000 ---p 00084000 08:11 11812943                   /lib/libm-2.9.so
+7f5aafe6b000-7f5aafe6c000 r--p 00083000 08:11 11812943                   /lib/libm-2.9.so
+7f5aafe6c000-7f5aafe6d000 rw-p 00084000 08:11 11812943                   /lib/libm-2.9.so
+7f5aafe6d000-7f5aafea6000 r-xp 00000000 08:11 11812940                   /lib/libncurses.so.5.7
+7f5aafea6000-7f5ab00a5000 ---p 00039000 08:11 11812940                   /lib/libncurses.so.5.7
+7f5ab00a5000-7f5ab00a9000 r--p 00038000 08:11 11812940                   /lib/libncurses.so.5.7
+7f5ab00a9000-7f5ab00aa000 rw-p 0003c000 08:11 11812940                   /lib/libncurses.so.5.7
+7f5ab00aa000-7f5ab00c3000 r-xp 00000000 08:11 43720851                   /home/naska/neuron/icc/nrn/x86_64/lib/libreadline.so.0.0.0
+7f5ab00c3000-7f5ab02c2000 ---p 00019000 08:11 43720851                   /home/naska/neuron/icc/nrn/x86_64/lib/libreadline.so.0.0.0
+7f5ab02c2000-7f5ab02c6000 rw-p 00018000 08:11 43720851                   /home/naska/neuron/icc/nrn/x86_64/lib/libreadline.so.0.0.0
+7f5ab02c6000-7f5ab0515000 r-xp 00000000 08:11 43712521                   /home/naska/neuron/icc/iv/x86_64/lib/libIVhines.so.3.0.3
+7f5ab0515000-7f5ab0714000 ---p 0024f000 08:11 43712521                   /home/naska/neuron/icc/iv/x86_64/lib/libIVhines.so.3.0.3
+7f5ab0714000-7f5ab075d000 rw-p 0024e000 08:11 43712521                   /home/naska/neuron/icc/iv/x86_64/lib/libIVhines.so.3.0.3
+7f5ab075d000-7f5ab0765000 rw-p 7f5ab075d000 00:00 0 
+7f5ab0765000-7f5ab07d3000 r-xp 00000000 08:11 43720924                   /home/naska/neuron/icc/nrn/x86_64/lib/libmeschach.so.0.0.0
+7f5ab07d3000-7f5ab09d2000 ---p 0006e000 08:11 43720924                   /home/naska/neuron/icc/nrn/x86_64/lib/libmeschach.so.0.0.0
+7f5ab09d2000-7f5ab09d6000 rw-p 0006d000 08:11 43720924                   /home/naska/neuron/icc/nrn/x86_64/lib/libmeschach.so.0.0.0
+7f5ab09d6000-7f5ab09d9000 rw-p 7f5ab09d6000 00:00 0 
+7f5ab09d9000-7f5ab09f1000 r-xp 00000000 08:11 43720855                   /home/naska/neuron/icc/nrn/x86_64/lib/libmemacs.so.0.0.0
+7f5ab09f1000-7f5ab0bf0000 ---p 00018000 08:11 43720855                   /home/naska/neuron/icc/nrn/x86_64/lib/libmemacs.so.0.0.0
+7f5ab0bf0000-7f5ab0bf3000 rw-p 00017000 08:11 43720855                   /home/naska/neuron/icc/nrn/x86_64/lib/libmemacs.so.0.0.0
+7f5ab0bf3000-7f5ab0c56000 r-xp 00000000 08:11 43720920                   /home/naska/neuron/icc/nrn/x86_64/lib/libsundials.so.0.0.0
+7f5ab0c56000-7f5ab0e55000 ---p 00063000 08:11 43720920                   /home/naska/neuron/icc/nrn/x86_64/lib/libsundials.so.0.0.0
+7f5ab0e55000-7f5ab0e58000 rw-p 00062000 08:11 43720920                   /home/naska/neuron/icc/nrn/x86_64/lib/libsundials.so.0.0.0
+7f5ab0e58000-7f5ab0e6f000 r-xp 00000000 08:11 43720864                   /home/naska/neuron/icc/nrn/x86_64/lib/libsparse13.so.0.0.0
+7f5ab0e6f000-7f5ab106e000 ---p 00017000 08:11 43720864                   /home/naska/neuron/icc/nrn/x86_64/lib/libsparse13.so.0.0.0
+7f5ab106e000-7f5ab106f000 rw-p 00016000 08:11 43720864                   /home/naska/neuron/icc/nrn/x86_64/lib/libsparse13.so.0.0.0
+7f5ab106f000-7f5ab10be000 r-xp 00000000 08:11 43720874                   /home/naska/neuron/icc/nrn/x86_64/lib/libscopmath.so.0.0.0
+7f5ab10be000-7f5ab12be000 ---p 0004f000 08:11 43720874                   /home/naska/neuron/icc/nrn/x86_64/lib/libscopmath.so.0.0.0
+7f5ab12be000-7f5ab12c1000 rw-p 0004f000 08:11 43720874                   /home/naska/neuron/icc/nrn/x86_64/lib/libscopmath.so.0.0.0
+7f5ab12c1000-7f5ab12c3000 rw-p 7f5ab12c1000 00:00 0 
+7f5ab12c3000-7f5ab12d3000 r-xp 00000000 08:11 43720928                   /home/naska/neuron/icc/nrn/x86_64/lib/libneuron_gnu.so.0.0.0
+7f5ab12d3000-7f5ab14d3000 ---p 00010000 08:11 43720928                   /home/naska/neuron/icc/nrn/x86_64/lib/libneuron_gnu.so.0.0.0
+7f5ab14d3000-7f5ab14d4000 rw-p 00010000 08:11 43720928                   /home/naska/neuron/icc/nrn/x86_64/lib/libneuron_gnu.so.0.0.0
+7f5ab14d4000-7f5ab14da000 r-xp 00000000 08:11 43720879                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrnmpi.so.0.0.0
+7f5ab14da000-7f5ab16d9000 ---p 00006000 08:11 43720879                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrnmpi.so.0.0.0
+7f5ab16d9000-7f5ab16da000 rw-p 00005000 08:11 43720879                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrnmpi.so.0.0.0
+7f5ab16da000-7f5ab180f000 r-xp 00000000 08:11 43720932                   /home/naska/neuron/icc/nrn/x86_64/lib/libivoc.so.0.0.0
+7f5ab180f000-7f5ab1a0f000 ---p 00135000 08:11 43720932                   /home/naska/neuron/icc/nrn/x86_64/lib/libivoc.so.0.0.0
+7f5ab1a0f000-7f5ab1a22000 rw-p 00135000 08:11 43720932                   /home/naska/neuron/icc/nrn/x86_64/lib/libivoc.so.0.0.0
+7f5ab1a22000-7f5ab1a2f000 rw-p 7f5ab1a22000 00:00 0 
+7f5ab1a2f000-7f5ab1b5e000 r-xp 00000000 08:11 43720939                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrniv.so.0.0.0
+7f5ab1b5e000-7f5ab1d5d000 ---p 0012f000 08:11 43720939                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrniv.so.0.0.0
+7f5ab1d5d000-7f5ab1d6b000 rw-p 0012e000 08:11 43720939                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrniv.so.0.0.0
+7f5ab1d6b000-7f5ab1e6d000 r-xp 00000000 08:11 3697232                    /usr/lib/libX11.so.6.2.0
+7f5ab1e6d000-7f5ab206d000 ---p 00102000 08:11 3697232                    /usr/lib/libX11.so.6.2.0
+7f5ab206d000-7f5ab206e000 r--p 00102000 08:11 3697232                    /usr/lib/libX11.so.6.2.0
+7f5ab206e000-7f5ab2072000 rw-p 00103000 08:11 3697232                    /usr/lib/libX11.so.6.2.0
+7f5ab2072000-7f5ab20c2000 r-xp 00000000 08:11 43720883                   /home/naska/neuron/icc/nrn/x86_64/lib/liboc.so.0.0.0
+7f5ab20c2000-7f5ab22c1000 ---p 00050000 08:11 43720883                   /home/naska/neuron/icc/nrn/x86_64/lib/liboc.so.0.0.0
+7f5ab22c1000-7f5ab22c7000 rw-p 0004f000 08:11 43720883                   /home/naska/neuron/icc/nrn/x86_64/lib/liboc.so.0.0.0
+7f5ab22c7000-7f5ab22cf000 rw-p 7f5ab22c7000 00:00 0 
+7f5ab22cf000-7f5ab2359000 r-xp 00000000 08:11 43720898                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrnoc.so.0.0.0
+7f5ab2359000-7f5ab2558000 ---p 0008a000 08:11 43720898                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrnoc.so.0.0.0
+7f5ab2558000-7f5ab255f000 rw-p 00089000 08:11 43720898                   /home/naska/neuron/icc/nrn/x86_64/lib/libnrnoc.so.0.0.0
+7f5ab255f000-7f5ab2561000 rw-p 7f5ab255f000 00:00 0 
+7f5ab2561000-7f5ab2581000 r-xp 00000000 08:11 11812883                   /lib/ld-2.9.so
+7f5ab25c8000-7f5ab25f0000 rw-p 7f5ab25c8000 00:00 0 
+7f5ab2616000-7f5ab261b000 rw-p 7f5ab2616000 00:00 0 
+7f5ab261b000-7f5ab2655000 r-xp 00000000 08:11 28885037                   /opt/intel/Compiler/11.1/069/lib/intel64/libintlc.so.5
+7f5ab2655000-7f5ab2754000 ---p 0003a000 08:11 28885037                   /opt/intel/Compiler/11.1/069/lib/intel64/libintlc.so.5
+7f5ab2754000-7f5ab2757000 rw-p 00039000 08:11 28885037                   /opt/intel/Compiler/11.1/069/lib/intel64/libintlc.so.5
+7f5ab2757000-7f5ab275f000 rw-p 7f5ab2757000 00:00 0 
+7f5ab2779000-7f5ab277f000 rw-p 7f5ab2779000 00:00 0 
+7f5ab277f000-7f5ab2780000 r-xp 7f5ab277f000 00:00 0                      [vdso]
+7f5ab2780000-7f5ab2781000 r--p 0001f000 08:11 11812883                   /lib/ld-2.9.so
+7f5ab2781000-7f5ab2782000 rw-p 00020000 08:11 11812883                   /lib/ld-2.9.so
+7fffbc1eb000-7fffbc200000 rw-p 7ffffffe9000 00:00 0                      [stack]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+rank 1 in job 93  ai-sentai_49478   caused collective abort of all ranks
+  exit status of rank 1: killed by signal 9 

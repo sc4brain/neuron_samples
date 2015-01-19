@@ -1,0 +1,136 @@
+
+load_file("stdlib.hoc")
+
+create dend[14877]
+
+objref synlist
+//double synlistno[14877]
+objref synno
+objref fobj
+
+proc my_cell_init() {
+	fobj = new File()
+	fobj.ropen("UN_969_Data.txt")
+	synlist = new List()
+	x = $1
+	y = $2
+	z = $3
+	rev = $4
+	my_cell_topol()
+	my_cell_subsets()
+	my_cell_geom()
+	my_cell_biophys()
+	my_cell_geom_nseg()
+	synno = new Vector()
+	//synapse()
+}
+
+proc my_cell_topol () { local from, to, temp
+	my_cell_shape()
+	for i = 1, fobj.scanvar() {
+		from = fobj.scanvar()
+		to = fobj.scanvar()
+		connect dend[from](0), dend[to](1)
+	}
+	
+}
+
+
+tspine = 0
+proc chkspine() {
+	if($4 < 0) { nspine = nspine + 1 }
+	pt3dadd($1, $2, $3, abs($4))
+}
+
+proc my_cell_shape() { local i, j, jmax
+	for i = 0, fobj.scanvar() - 1 {
+		dend[fobj.scanvar()] {
+			pt3dclear()
+			for j = 1, 2 {
+				chkspine(x + rev * fobj.scanvar(), y + fobj.scanvar(), z + fobj.scanvar(), fobj.scanvar())
+//				chkspine(fobj.scanvar(), fobj.scanvar(), fobj.scanvar(), fobj.scanvar())				
+			}
+		}
+	}
+}
+
+objref all
+proc my_cell_subsets () { local i
+	/*
+	objref all
+	all = new SectionList()
+	for i = 0, i < 5349 - 1 { dend[i] all.append() }
+	*/
+}
+
+proc my_cell_geom() {
+	forall {}
+}
+
+//external lambda_f
+proc my_cell_geom_nseg() {
+	forall { nseg = int((L / (0.1 * lambda_f(100)) + .9) / 2) * 2 + 1 }
+}
+
+proc my_cell_biophys() {
+	forall {
+		Ra = 100
+		cm = 1
+		//Ra /= 1
+		
+		insert hh
+	}
+}
+
+proc my_cell_biophys_inhomo() {}
+
+proc my_cell_position() {
+	for i = 0, fobj.scanvar() - 1 {
+	dend[i] for j = 0, n3d() - 1 {
+		pt3dchange(j, $1 - x + x3d(j), $2 - y + y3d(j), $3 - z + z3d(j), diam3d(j)) }
+	}
+}
+
+objref syn_
+//syncount = 0
+obfunc makeSyn() {
+	/*
+	for i = 0, syncount - 1 {
+		if ($1 == synlistno[i]) return synlist.object(i)
+	}
+	*/
+	for i = 0, synno.size-1 {
+		if ($1 == synno.x[i]) return synlist.object(i)
+	}
+	//	print $1
+	//	synlistno[syncount] = $1
+	synno.append($1)
+//	syncount += 1
+	dend[$1] syn_ = new Exp2Syn(0.5) synlist.append(syn_)
+	syn_.tau1 = $2
+	syn_.tau2 = $3
+	syn_.e = $4
+	return syn_
+	/*
+	dend[$1] syn_ = new Exp2Syn(0.5) synlist.append(syn_)
+	syn_.tau1 = $2
+	syn_.tau2 = $3
+	syn_.e = $4
+	return syn_
+	*/
+}
+
+obfunc makeNetCon() { localobj nc
+	// NetCon(source, target, threshold, delay, weight)
+	print $1
+	dend[$1] nc = new NetCon(&v(0.5), $o2, $3, $4, $5)
+	return nc
+}
+
+obfunc getRecPoint() { localobj vec
+	vec = new Vector()
+	vec.append(840)
+	return vec
+}
+
+my_cell_init(0, 0, 0, 1)

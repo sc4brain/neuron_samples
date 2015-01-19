@@ -1,0 +1,39 @@
+numprocs=4
+###############################################################
+#nhost     = 4
+#split     = 1
+		1 
+	1 
+	1 1 
+
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+#c = 119017   maxfactor = 0.3   cm = 8926.275 
+#total complexity is 119738
+#1 cells
+#25 pieces
+#maximum complexity is 30168.6 for host 0
+#load imbalance is 0.8%
+#maximum of 7 pieces on host 1
+#at least one cell is broken into 25 pieces (bilist[0], gid 0)
+#at least one cell has 13 sids (bilist[0], gid 0)
+				0.0031239986 
+0.0031340122 0.0050160885 
+4.7683716e-06 
+
+				3.8146973e-06 
+2.8610229e-06 5.9604645e-06 
+4.0531158e-06 
+
+#
+#setuptime = 1.07
+#runtime   = 4.88
+#    0 time    4.81302  0.0609651 0.00838041 30078
+#    1 time     4.7846  0.0894074 0.00291276 29647
+#    2 time    4.73599   0.138007 0.00276423 29758
+#
+#    3 time    4.71497   0.159029 0.00263023 29558

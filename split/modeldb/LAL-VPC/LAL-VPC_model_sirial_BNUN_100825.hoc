@@ -1,0 +1,320 @@
+
+load_file("nrngui.hoc")
+//load_file("TimeClockWin.hoc")
+//objref tx
+//tx = new TimeClock()
+//printf("start sec : %d\n", tx.getSec())
+
+xopen("$(NEURONHOME)/lib/hoc/noload.hoc")
+//nrnmainmenu()
+
+load_file("electrod.hoc")
+load_file("pointman.hoc")
+load_file("stdlib.hoc")
+load_file("CellTemplate_BN_1056_100221.hoc")
+load_file("CellTemplate_a1UN_969.hoc")
+NCELLS = 76
+
+objref fobj
+
+objref cells_BNr, cells_BNl, cells_UNr, cells_UNl, cells, nclist
+
+proc mknet() {
+	fobj = new File()
+	//fobj.ropen("LAL-VPC_model_connections.txt")
+	mkcells()
+	//fobj.close()
+	fobj.ropen("LAL-VPC_model_connections_BNandUN.txt")
+	
+	connectcells()
+	fobj.close()
+}
+
+
+
+proc mkcells () { local i, zscale localobj cell, nc, nil
+	cells_BNr = new List()
+	cells_BNl = new List()
+	
+	cells_UNr = new List()
+	cells_UNl = new List()
+	
+	cells = new List()
+	
+	//printf("point1\n")
+	for (i = 0; i < NCELLS; i += 1) {
+		
+		/*
+		if (i < 24) {
+			//printf("make<24\n")
+			cell = new BN_1056(0., i*150., 0., -1)
+			cells_BNr.append(cell)
+		} else if (i < 48) {
+			cell = new BN_1056(0., (i-24)*150., 0., 1)
+			cells_BNl.append(cell)
+		} else if (i < 60) {
+			cell = new UN_969(1000., (i-48)*200, 0., -1)
+			cells_UNr.append(cell)
+		} else if (i < 72) {
+			cell = new UN_969(-1000., (i-60)*200., 0., 1)
+			cells_UNl.append(cell)
+		}
+		*/
+		zscale = 200
+		if (i < 24) {
+			//printf("make<24\n")
+			cell = new BN_1056(0., i*0., i*zscale, -1)
+			cells_BNr.append(cell)
+		} else if (i < 48) {
+			cell = new BN_1056(-600., (i-24)*0.+ 00, (i-24)*zscale, 1)
+			cells_BNl.append(cell)
+		} else if (i < 60) {
+			cell = new UN_969(-250., (i-48)*0, (i-48)*zscale, 1)
+			cells_UNr.append(cell)
+		} else if (i < 72) {
+			cell = new UN_969(-350., (i-60)*0. + 00, (i-60)*zscale, -1)
+			cells_UNl.append(cell)
+		}
+		cells.append(cell)
+	}
+	
+	//printf("%.0f\n", pc.id, cells_BNr.count + cells_BNl.count)
+}
+
+proc connectcells () { local revv, i, targid, targid2, srcid, srcid2, tau1, tau2, e, threshold, delay, weight, incomp, outcomp localobj src, target, syn, nc
+	
+	nclist = new List()
+	// BN
+	for i = 0, fobj.scanvar() - 1 {
+		targid2 = fobj.scanvar() % NCELLS
+		srcid = fobj.scanvar() % NCELLS
+		
+		if (srcid >= 24) {
+			srcid2 = srcid + 24 + 12
+			srcid = srcid + 24
+		} else {
+			srcid2 = srcid + 24
+		}
+		targid = targid2 + 24
+		
+		incomp = fobj.scanvar()
+		tau1 = fobj.scanvar()
+		tau2 = fobj.scanvar()
+		e = fobj.scanvar()
+		outcomp = fobj.scanvar()
+		threshold = fobj.scanvar()
+		delay = fobj.scanvar()
+		weight = fobj.scanvar()
+		
+		if (targid >= NCELLS) continue
+		if (targid2 >= NCELLS) continue
+		if (srcid >= NCELLS) continue
+		if (srcid2 >= NCELLS) continue
+		
+		if (srcid >= 48) {
+			revv = -100
+		} else {
+			revv = -30
+		}
+		
+		
+		target = cells.object(targid)
+		src = cells.object(srcid)
+		//src = pc.gid2cell(srcid)
+		syn = target.makeSyn(incomp, 0.1, 3, revv)
+		//nc = src.makeNetCon(outcomp, nil, 0, 0, 1.0)
+		//pc.cell(targid, nc)
+		nc = src.makeNetCon(outcomp, syn, threshold, delay, 0.1)
+		nclist.append(nc)
+		
+		target = cells.object(targid2)
+		src = cells.object(srcid2)
+		syn = target.makeSyn(incomp, 0.1, 3, revv)
+		//syn = target.makeSyn(incomp, tau1, tau2, e)
+		nc = src.makeNetCon(outcomp, syn, threshold, delay, 0.1)
+		nclist.append(nc)
+	}
+	
+	// UN
+	for i = 0, fobj.scanvar() - 1 {
+		targid = fobj.scanvar() % NCELLS + 48
+		srcid = fobj.scanvar() % NCELLS
+		
+		if (srcid >= 24) {
+			srcid2 = srcid + 24 + 12
+			srcid = srcid + 24
+		} else {
+			srcid2 = srcid + 24
+		}
+		targid2 = targid + 12
+		
+		incomp = fobj.scanvar()
+		tau1 = fobj.scanvar()
+		tau2 = fobj.scanvar()
+		e = fobj.scanvar()
+		outcomp = fobj.scanvar()
+		threshold = fobj.scanvar()
+		delay = fobj.scanvar()
+		weight = fobj.scanvar()
+		
+		if (targid >= NCELLS) continue
+		if (targid2 >= NCELLS) continue
+		if (srcid >= NCELLS) continue
+		if (srcid2 >= NCELLS) continue
+		
+		if (srcid >= 48) {
+			revv = -100
+		} else {
+			revv = -30
+		}
+		
+		
+		target = cells.object(targid)
+		src = cells.object(srcid)
+		//src = pc.gid2cell(srcid)
+		syn = target.makeSyn(incomp, 0.1, 3, revv)
+		//nc = src.makeNetCon(outcomp, nil, 0, 0, 1.0)
+		//pc.cell(targid, nc)
+		nc = src.makeNetCon(outcomp, syn, threshold, delay, 0.1)
+		nclist.append(nc)
+		
+		target = cells.object(targid2)
+		src = cells.object(srcid2)
+		syn = target.makeSyn(incomp, 0.1, 3, revv)
+		//syn = target.makeSyn(incomp, tau1, tau2, e)
+		nc = src.makeNetCon(outcomp, syn, threshold, delay, 0.1)
+		nclist.append(nc)
+	}
+}
+
+mknet()
+
+
+objref stim, stim2, ncstim, ncstim2, ic, syn
+proc mkstim() { localobj target
+	//if (!pc.gid_exists(0)) { return }
+	//syn = cells.object(0).makeSyn(4234, 0.1, 10, 0)
+	syn = cells_BNr.object(23).makeSyn(4234, 0.1, 10, 0)
+	stim = new NetStim()
+	stim.number = 100
+	stim.interval = 3
+	stim.start = 0
+	ncstim = new NetCon(stim, syn)
+	ncstim.delay = 0
+	ncstim.weight = 1.
+	
+	
+	//syn = cells.object(1).makeSyn(4234, 0.1, 10, 0)
+	syn = cells_BNr.object(22).makeSyn(4234, 0.1, 10, 0)
+	stim2 = new NetStim()
+	stim2.number = 100
+	stim2.interval = 3
+	stim2.start = 0
+	ncstim2 = new NetCon(stim2, syn)
+	ncstim2.delay = 0
+	ncstim2.weight = 1.
+	
+	printf("stim created\n")
+}
+
+mkstim()
+
+objref tvec, idvec
+proc spikerecord() { local i localobj nc, nil
+	tvec = new Vector()
+	idvec = new Vector()
+	for i = 0, cells_BNr.count - 1 {
+		nc = cells_BNr.object(i).makeNetCon(0, nil, 0, 0, 1.0)
+		nc.record(tvec, idvec, nc.srcgid)
+	}
+	
+	for i = 0, cells_BNl.count - 1 {
+		nc = cells_BNl.object(i).makeNetCon(0, nil, 0, 0, 1.0)
+		nc.record(tvec, idvec, nc.srcgid)
+	}
+}
+
+spikerecord()
+
+
+//proc timePrint() {
+///	printf("\ntime : \t %d\n", tx.getSec())
+//}
+
+//timePrint()
+
+
+tstop = 50
+dt = 0.1
+//run()
+
+//timePrint()
+
+proc spikeout() { local i, rank
+	printf("\ntime\t cell\n")
+	
+	for i = 0, tvec.size - 1 {
+		printf("%g\t %d\n", tvec.x[i], idvec.x[i])
+	}
+	
+}
+
+//------------------------------
+// print graphics
+objectvar g[20]
+ngraph = 0
+
+proc addgraph() { local ii
+	ngraph = ngraph + 1
+	ii = ngaph - 1
+	g[ii] = new Graph()
+	g[ii].size(0, tstop, $2, $3)
+	g[ii].xaxis()
+	g[ii].yaxis()
+	g[ii].addvar($1, 1, 0)
+	g[ii].save_name("graphList[0].")
+	graphList[0].append(g[ii])
+}
+
+proc addshape() { local ii
+	ngraph = ngraph+1
+	ii = ngraph-1
+	g[ii] = new PlotShape()
+	g[ii].scale(-120,60)
+	g[ii].save_name("flush_list.")
+	flush_list.append(g[ii])
+}
+
+addshape()
+n_sh = ngraph - 1
+g[n_sh].scale(-80, 40)
+//g[n_sh].size(0, 500, 500, 1000)
+
+
+strdef command
+OutputTime = 28
+
+
+proc step() { local i
+	for i = 1, nstep_steprun {
+		advance()
+	}
+	Plot()
+	if (1) {
+		g[n_sh].printfile("temp.ps")
+		
+		system("pstopnm -xsize 1024 -ysize 1024 -portrait -xborder 0 -yborder 0 temp.ps")
+		
+		
+		// 3. convert the ppm file to YUV
+		
+        system("ppmtoyuvsplit temp temp*ppm")
+		
+		sprint(command, "mv temp*.ppm frames/LAL-VPC_model_%04d.ppm", nframe)
+		system(command)
+		
+		nframe = nframe + 1
+	}
+}
+
+

@@ -1,0 +1,176 @@
+numprocs=3
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+###############################################################
+#nhost     = 3
+#split     = 4
+cell created 1062 
+cell created 1062 
+cell created 1062 
+#c = 83003   maxfactor = 0.075   cm = 2075.075 
+#total complexity is 83491
+#1 cells
+#76 pieces
+#maximum complexity is 27814.2 for host 1
+#load imbalance is -0.1%
+#maximum of 26 pieces on host 1
+#at least one cell is broken into 76 pieces (bilist[0], gid 0)
+#at least one cell has 37 sids (bilist[0], gid 0)
+	1 
+	1 
+	1 
+	0 
+	0 
+0 Cell_UN_1062[0].dend[738]   2 
+	0 
+1 Cell_UN_1062[0].dend[850]   96 
+0 Cell_UN_1062[0].dend[672]   2 Cell_UN_1062[0].dend[904]   225 
+259 
+1 Cell_UN_1062[0].dend[737]   188 3 Cell_UN_1062[0].dend[942]   197 
+
+2 Cell_UN_1062[0].dend[849]   38 
+3 Cell_UN_1062[0].dend[906]   1 
+4 Cell_UN_1062[0].dend[909]   10 
+0 Cell_UN_1062[0].dend[0]   1001 
+4 Cell_UN_1062[0].dend[950]   243 
+5 Cell_UN_1062[0].dend[1004]   153 
+5 1 Cell_UN_1062[0].dend[671]   Cell_UN_1062[0].dend[954] 169 
+  132 
+2 Cell_UN_1062[0].dend[673]   1 
+3 Cell_UN_1062[0].dend[847]   5 
+6 Cell_UN_1062[0].dend[955]   19 
+6 Cell_UN_1062[0].dend[1104]   145 
+7 Cell_UN_1062[0].dend[1005]   98 
+8 Cell_UN_1062[0].dend[1101]   8 
+4 Cell_UN_1062[0].dend[848]   208 
+7 Cell_UN_1062[0].dend[1399]   153 
+9 Cell_UN_1062[0].dend[1402]   181 
+5 Cell_UN_1062[0].dend[953]   164 
+10 Cell_UN_1062[0].dend[1581]   78 
+8 Cell_UN_1062[0].dend[1401]   248 
+11 Cell_UN_1062[0].dend[1710]   141 
+9 Cell_UN_1062[0].dend[1469]   27 
+10 Cell_UN_1062[0].dend[1471]   7 
+6 Cell_UN_1062[0].dend[1400]   234 
+7 Cell_UN_1062[0].dend[1474]   59 
+12 Cell_UN_1062[0].dend[1955]   210 
+13 Cell_UN_1062[0].dend[2128]   1 
+8 Cell_UN_1062[0].dend[1579]   138 
+11 Cell_UN_1062[0].dend[1709]   235 
+12 Cell_UN_1062[0].dend[1810]   2 
+14 Cell_UN_1062[0].dend[2129]   168 
+13 Cell_UN_1062[0].dend[1811]   127 
+9 Cell_UN_1062[0].dend[1721]   254 
+14 Cell_UN_1062[0].dend[1956]   73 
+15 Cell_UN_1062[0].dend[3387]   201 
+16 Cell_UN_1062[0].dend[3388]   54 
+17 Cell_UN_1062[0].dend[4176]   8 
+10 Cell_UN_1062[0].dend[2127]   205 
+15 Cell_UN_1062[0].dend[2539]   133 
+11 Cell_UN_1062[0].dend[2538]   132 
+16 Cell_UN_1062[0].dend[2707]   80 
+12 Cell_UN_1062[0].dend[2704]   41 
+13 Cell_UN_1062[0].dend[2706]   4 
+14 Cell_UN_1062[0].dend[3148]   1 
+18 Cell_UN_1062[0].dend[4512]   249 
+17 Cell_UN_1062[0].dend[3384]   197 
+15 Cell_UN_1062[0].dend[3149]   258 
+19 Cell_UN_1062[0].dend[4555]   254 
+16 Cell_UN_1062[0].dend[3484]   121 
+18 Cell_UN_1062[0].dend[3486]   20 Cell_UN_1062[0].dend[4757]   168 
+223 
+17 Cell_UN_1062[0].dend[3871]   182 
+21 Cell_UN_1062[0].dend[5152]   147 
+18 Cell_UN_1062[0].dend[3946]   70 
+22 Cell_UN_1062[0].dend[5687]   64 
+19 Cell_UN_1062[0].dend[4178]   228 
+19 Cell_UN_1062[0].dend[3947]   233 
+20 Cell_UN_1062[0].dend[3948]   12 
+23 Cell_UN_1062[0].dend[5688]   259 
+20 Cell_UN_1062[0].dend[5019]   257 
+21 Cell_UN_1062[0].dend[4136]   194 
+22 Cell_UN_1062[0].dend[4179]   23 
+24 Cell_UN_1062[0].dend[8598]   258 
+	0 
+	Vector[208056] 
+	0 
+6941	6919	6942	6911	
+	4 
+[  2]	5 
+balance 1.0019846 
+21 23 Cell_UN_1062[0].dend[4364]   259 
+Cell_UN_1062[0].dend[5397]   257 
+24 Cell_UN_1062[0].dend[5153]   151 
+22 Cell_UN_1062[0].dend[5537]   169 
+25 Cell_UN_1062[0].dend[7314]   91 
+	0 
+	Vector[201479] 
+	0 
+6965	6910	6882	6901	
+	4 
+[  1]	5 
+balance 1.0073035 
+23 Cell_UN_1062[0].dend[7312]   62 
+24 Cell_UN_1062[0].dend[8595]   189 
+	0 
+	Vector[215841] 
+	0 
+6920	6919	6943	6925	
+	4 
+[  0]	5 
+balance 1.002346 
+			0.01068902 0.024670839 
+
+7.8678131e-06 
+1 nrniv: Segmentation violation
+1  in init.hoc near line 110
+1  {pc.multisplit()}
+                  ^
+        1 ParallelContext[0].multisplit()
+application called MPI_Abort(MPI_COMM_WORLD, -1) - process 1

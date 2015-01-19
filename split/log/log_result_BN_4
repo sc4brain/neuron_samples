@@ -1,0 +1,73 @@
+numprocs=1
+NEURON -- Release 7.1 (359:7f113b76a94b) 2009-10-26
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2008
+See http://www.neuron.yale.edu/credits.html
+
+Additional mechanisms from files
+ modeldb/prknj/CaE.mod modeldb/prknj/CaP.mod modeldb/prknj/CaP2.mod modeldb/prknj/CaT.mod modeldb/prknj/CalciumP.mod modeldb/prknj/K2.mod modeldb/prknj/K22.mod modeldb/prknj/K23.mod modeldb/prknj/KA.mod modeldb/prknj/KC.mod modeldb/prknj/KC2.mod modeldb/prknj/KC3.mod modeldb/prknj/KD.mod modeldb/prknj/KM.mod modeldb/prknj/Kdr.mod modeldb/prknj/Kh.mod modeldb/prknj/Khh.mod modeldb/prknj/Leak.mod modeldb/prknj/NaF.mod modeldb/prknj/NaP.mod
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+###############################################################
+#nhost     = 1
+#split     = 4
+cell created 1006 
+#c = 86845   maxfactor = 0.075   cm = 6513.375 
+#total complexity is 87568.6
+#1 cells
+#23 pieces
+#maximum complexity is 87449.2 for host 0
+#load imbalance is -0.1%
+#maximum of 23 pieces on host 0
+#at least one cell is broken into 23 pieces (bilist[0], gid 0)
+#at least one cell has 12 sids (bilist[0], gid 0)
+	0 
+	1 
+	0 
+0 Cell_BN_1006[0].dend[0]   524 
+1 Cell_BN_1006[0].dend[525]   466 
+2 Cell_BN_1006[0].dend[528]   455 
+3 Cell_BN_1006[0].dend[926]   813 
+4 Cell_BN_1006[0].dend[932]   796 
+5 Cell_BN_1006[0].dend[934]   12 
+6 Cell_BN_1006[0].dend[1550]   515 
+7 Cell_BN_1006[0].dend[1556]   81 
+8 Cell_BN_1006[0].dend[1931]   519 
+9 Cell_BN_1006[0].dend[1936]   695 
+10 Cell_BN_1006[0].dend[2531]   607 
+11 Cell_BN_1006[0].dend[2536]   745 
+12 Cell_BN_1006[0].dend[2744]   227 
+13 Cell_BN_1006[0].dend[2745]   14 
+14 Cell_BN_1006[0].dend[3000]   804 
+15 Cell_BN_1006[0].dend[4334]   729 
+16 Cell_BN_1006[0].dend[4335]   36 
+17 Cell_BN_1006[0].dend[7973]   99 
+18 Cell_BN_1006[0].dend[7974]   137 
+19 Cell_BN_1006[0].dend[8123]   809 
+20 Cell_BN_1006[0].dend[8124]   741 
+21 Cell_BN_1006[0].dend[8126]   232 
+22 Cell_BN_1006[0].dend[8457]   801 
+	0 
+	Vector[667344] 
+	0 
+21670	21792	21654	21751	
+	4 
+[  0]	5 
+balance 1.0034651 
+	0 
+#
+#setuptime = 4.67
+#runtime   = 11.09
+#    0 time    11.0802  0.0119648  0.0067265 86867
+#

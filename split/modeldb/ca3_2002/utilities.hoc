@@ -1,0 +1,112 @@
+// Utilities for NEURON
+// (c) Maciej Lazarewicz (mlazarew@gmu.edu) (2001) v1.1
+
+
+objref file11
+
+//This procedure saves all parameters you need to rerun simulation
+//Name of the output file has to be in variable 'name'
+proc save_param() {
+	file11 = new File()
+	file11.wopen(name)
+
+	file11.printf("xopen(\"%s\")\n",file_name_morphology)
+
+	file11.printf("//1 - fast_mesh\n")
+	file11.printf("Type_Mesh=%g\n",Type_Mesh)
+	file11.printf("Mesh_th=%g\n",Mesh_th)
+
+	file11.printf("//Types of ion channels\n")
+
+	file11.printf("//1 - M95 Migliore (1995)  2 - BG Borg-Graham (1999) 3 - M99SL Migliore (1999) 4- BG99 Borg-Graham paper (1999)\n")
+
+	file11.printf("Type_Na=%g\n",Type_Na)
+	file11.printf("Type_Kdr=%g\n",Type_Kdr)
+	file11.printf("Type_Ka=%g\n",Type_Ka)
+	file11.printf("Type_Kc=%g\n",Type_Kc)
+	file11.printf("Type_Kahp=%g\n",Type_Kahp)
+	file11.printf("Type_Km=%g\n",Type_Km)
+	file11.printf("Type_Kh=%g\n",Type_Kh)
+	file11.printf("Type_Kd=%g\n",Type_Kd)
+	file11.printf("Type_CaL=%g\n",Type_CaL)
+	file11.printf("Type_CaN=%g\n",Type_CaN)
+	file11.printf("Type_CaT=%g\n",Type_CaT)
+
+	file11.printf("//Na Magee Johnston (1995) soma 5.6e-3 dendrites 6.1e-3\n")
+	file11.printf("gNa=%g\n",gNa)
+
+	file11.printf("gKdr=%g\n",gKdr)
+
+	file11.printf("gKa=%g\n",gKa)
+
+	file11.printf("//KaDt Cooficients for Ka: gKa*(1+KaDt*distance from soma)\n")
+	file11.printf("KaDt=%g\n",KaDt)
+
+	file11.printf("//Kc Migliore (1995) 0.55e-3\n")
+	file11.printf("gKc=%g\n",gKc)
+
+	file11.printf("//Kahp Migliore (1995) 0.4e-3\n")
+	file11.printf("gKahp=%g\n",gKahp)
+
+	file11.printf("//Km Migliore (1995) 0.02e-3\n")
+	file11.printf("gKm=%g\n",gKm)
+
+	file11.printf("//Kh Borg-Graham (1999)\n")
+	file11.printf("gKh=%g\n",gKh)
+
+	file11.printf("//Kd Borg-Graham (1999)\n")
+	file11.printf("gKd=%g\n",gKd)
+
+
+
+	file11.printf("// Magee Johnston (1995) 1.2e-3\n")
+	file11.printf("// Migliore (1995) 2.5e-3\n")
+	file11.printf("gCaL=%g\n",gCaL)
+
+	file11.printf("// Magee Johnston (1995) 1.5e-3\n")
+	file11.printf("// Migliore (1995) 2.5e-3\n")
+	file11.printf("gCaN=%g\n",gCaN)
+
+	file11.printf("// Magee Johnston (1995) 1.0e-3\n")
+	file11.printf("// Migliore (1995) 0.25e-3\n")
+	file11.printf("gCaT=%g\n",gCaT)
+
+
+	file11.printf("//CaL 1: all comp \n")
+	file11.printf("// 2: CaL < 50 um from soma Magee Johnston (1995)\n")
+	file11.printf("t_dist_CaL=%g\n",t_dist_CaL)
+
+	file11.printf("//Na 1: all comp\n")
+	file11.printf("// 2: like M95 (only for ca3.geo)\n")
+	file11.printf("t_dist_Na=%g\n",t_dist_Na)
+
+	file11.printf("//Kdr 1: all comp\n")
+	file11.printf("// 2: like M95 (only for ca3.geo)\n")
+	file11.printf("t_dist_Kdr=%g\n",t_dist_Kdr)
+
+	file11.printf("//Ka 1: all comp\n")
+	file11.printf("// 2: like M95 (only for ca3.geo)\n")
+	file11.printf("t_dist_Ka=%g\n",t_dist_Ka)
+
+	file11.printf("//Km 1: all comp\n")
+	file11.printf("// 2: like M95 (only for ca3.geo)\n")
+	file11.printf("t_dist_Km=%g\n",t_dist_Km)
+
+	file11.printf("//Kahp 1: all comp\n")
+	file11.printf("// 2: Basal + 0.1 other Bekkers JM (2000) J.Neurophysiology 83:1756-1759\n")
+	file11.printf("t_dist_Kahp=%g\n",t_dist_Kahp)
+
+
+	file11.printf("//Kc 1: all comp\n")
+	file11.printf("//Poolos NP, Johnston D J.Neuroscience 19:5205-5212 (1999)\n")
+	file11.printf("//Johnston D Hoffman DA Magee JC Poolos NP Watanabe S Colbert CM MIgliore M (2000) J Physiology 525.1:75-81\n")
+	file11.printf("// 2: <150 + incremental \n")
+	file11.printf("t_dist_Kc=%g\n",t_dist_Kc)
+
+	file11.printf("//pas 1:Migliore 1999 (ca3.geo only)  with Rm=60000 and ra=200 \n")
+	file11.printf("//pas 2:Migliore 1995\n")
+	file11.printf("//pas 3:Migliore 1999  with Rm=60000 and ra=200 \n") 
+	file11.printf("t_pas=%g\n",t_pas)
+
+	file11.close()
+}
