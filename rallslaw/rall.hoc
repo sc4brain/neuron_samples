@@ -1,3 +1,17 @@
+/*******************************************************/
+/*   Make Rall's Model                                 */
+/*                                                     */
+/*                       by Akihiko Goto (2014)        */
+/*                                                     */
+/*******************************************************/
+/*   USEAGE:                                           */
+/*     objref cell                                     */
+/*     cell = Rall(level, root_d, root_l, direction)   */
+/*     cell.makeDend()                                 */
+/*                                                     */
+/*******************************************************/
+
+
 {load_file("stdgui.hoc")}
 
 begintemplate Rall
