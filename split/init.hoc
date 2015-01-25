@@ -23,19 +23,13 @@ pc = pnm.pc
 {load_file("perf.hoc")}
 
 
-load_file("modeldb/LAL-VPC/CellTemplate_BN_662_Parallel.hoc")
-load_file("modeldb/LAL-VPC/CellTemplate_BN_692_Parallel.hoc")
-load_file("modeldb/LAL-VPC/CellTemplate_BN_1006_Parallel.hoc")
-load_file("modeldb/LAL-VPC/CellTemplate_BN_1056_Parallel.hoc")
-load_file("modeldb/LAL-VPC/CellTemplate_UN_969_Parallel.hoc")
-load_file("modeldb/LAL-VPC/CellTemplate_UN_970_Parallel.hoc")
-load_file("modeldb/LAL-VPC/CellTemplate_UN_1062_Parallel.hoc")
 
 load_file("../nrc/loadSwc.hoc")
 
 // initialize
 tstop = 100
 //pc.nthread(4)
+objref cell
 
 
 if (pc.id == 0) {
@@ -68,38 +62,7 @@ proc miyasho() {
 	add_trajec("SpinyDendrite", 0)
 }
 */
-objref cell
 
-proc mycell() {
-	//load_file("modeldb/my_cell/my_cell.hoc")
-	//load_file("modeldb/LAL-VPC/top_BN_1056.hoc")
-	
-	if (CELL_NO == 1006) {
-		cell = new Cell_BN_1006(0, 0, 0, 1)
-	} else if (CELL_NO == 1056) {
-		cell = new Cell_BN_1056(0, 0, 0, 1)
-	} else if (CELL_NO == 662) {
-		cell = new Cell_BN_662(0, 0, 0, 1)
-	} else if (CELL_NO == 692) {
-		cell = new Cell_BN_692(0, 0, 0, 1)
-	} else if (CELL_NO == 1062) {
-		cell = new Cell_UN_1062(0, 0, 0, 1)
-	} else if (CELL_NO == 969) {
-		cell = new Cell_UN_969(0, 0, 0, 1)
-	} else if (CELL_NO == 970) {
-		cell = new Cell_UN_970(0, 0, 0, 1)
-	} else {
-		print "CELL_NO error"
-		execerror("stop", "")
-	}
-	print "cell created ", CELL_NO
-	
-	// debug
-	//forall( printf("(%f, %f, %f) -> (%f, %f, %f)\n", x3d(0), y3d(0), z3d(0), x3d(1), y3d(1), z3d(1)))
-	//quit()
-
-	//add_trajec("soma")
-}
 
 proc myswc() {	
 	cell = new CellSwc("../swc/1056.swc", 0, 0, 0)
@@ -183,6 +146,7 @@ proc printSplitInfo() { local i
 
 }
 
+
 proc dorun() {
     
     runtime = startsw()
@@ -216,19 +180,9 @@ proc dorun() {
 }
 
 
-/*
-for i=0, pc.nhost-1 {
-	pc.barrier()
-	if(i==pc.id) {
-		pc.multisplit()
-	}
-}
-*/
-if (model==4){
-	mycell()
-}else if(model==5){
-	myswc()
-}
+
+myswc()
+
 pc.barrier()
 multisplit()
 
@@ -236,20 +190,23 @@ if (split > 1) {
 	load_file("pltsplit.hoc")
 //	execerror("stop", "")
 }
+
 pc.barrier()
 {pc.multisplit()}
+
 
 {pc.set_maxstep(100)}
 setuptime = startsw() - setuptime
 pc.barrier()
+
 if (pc.id == 0) {
 	printf("#\n")
 	printf("#setuptime = %g\n", setuptime)
 }
-
 objref sref
 strdef parent_name
 strdef root_name
+
 /*
 forall{
 	sref = new SectionRef()
@@ -270,5 +227,7 @@ while(sref.has_parent==1){
 	sref = new SectionRef()
 }
 */
+
+
 dorun()
 
