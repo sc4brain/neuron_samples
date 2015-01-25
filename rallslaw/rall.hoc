@@ -43,7 +43,7 @@ proc makeChild() { local pNum, level, px, py, pz, pd, pL, cd, cL, c1, c2
 		pd = diam3d(1)
 		pL = arc3d(n3d()-1)
 	}
-	cd = pd// * 2^(-2/3)
+	cd = pd * 2^(-2/3)
 	cL = pL * 2^(-1/3)
 	c1 = 2 * pNum + 1
 	c2 = 2 * pNum + 2
