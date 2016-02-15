@@ -1,0 +1,31 @@
+/********************************************************/
+/*    sample code of How to use SectionList Class       */
+/*                                                      */
+/*                                   by nebula          */
+/********************************************************/
+
+{load_file("nrngui.hoc")}
+{load_file("loadSwc.hoc")}
+
+objref cell
+objref sl1
+objref sl2
+
+cell = new CellSwc("../swc/simple.swc", 0, 0, 0)
+printf("Load OK\n")
+
+
+access CellSwc[0].Dend[0]
+sl1 = new SectionList()
+sl1.children()
+printf("%s has :\n", secname())
+sl1.printnames()
+
+
+access CellSwc[0].Dend[4]
+sl2 = new SectionList()
+sl2.children()
+printf("%s has :\n", secname())
+sl2.printnames()
+
+
