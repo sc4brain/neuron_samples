@@ -21,11 +21,20 @@ sl1.children()
 printf("%s has :\n", secname())
 sl1.printnames()
 
+forsec sl1 {
+    psection()
+}
+
 
 access CellSwc[0].Dend[4]
 sl2 = new SectionList()
 sl2.children()
 printf("%s has :\n", secname())
 sl2.printnames()
+
+forsec sl2 {
+    psection()
+}
+
 
 
